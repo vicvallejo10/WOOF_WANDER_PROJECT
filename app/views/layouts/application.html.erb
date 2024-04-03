@@ -10,17 +10,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
-
-<!-- Navigation bar -->
-  <%# <nav>
-    <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <!-- Add other navigation links here -->
-    <%# </ul>
-  </nav> %>
-
+  <body>
+  <%= render "shared/navbar" %>
+  <%= render "shared/flashes" %>
 
     <%= yield %>
   </body>
