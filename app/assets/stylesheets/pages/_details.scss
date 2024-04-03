@@ -1,0 +1,61 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.images img {
+  width: 200px;
+  height: auto;
+  margin: 0 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.take-me-there {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.back {
+  background-color: #ccc;
+}
+
+.tags {
+  margin-bottom: 20px;
+}
+
+.tag {
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.reviews .card {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
