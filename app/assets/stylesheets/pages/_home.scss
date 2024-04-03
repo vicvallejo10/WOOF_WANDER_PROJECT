@@ -1,44 +1,49 @@
 // Specific CSS for your home-page
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-.avatar {
-  margin-top: 50px;
-}
-.pet-banner {
-  margin-top: 20px;
-}
-.recommendation {
-  margin-top: 20px;
-}
 
-
-/* Additional styling as needed */
-/* .avatar img, */
-// .pet-banner img,
-.recommendation img {
-  border-radius: 10px; /* Adjust the value as needed */
-}
-
-.card-category {
-  background-size: cover;
-  background-position: center;
-  height: 180px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
+.card-2 {
+  overflow: hidden;
+  height: 120px;
+  background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-2 img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-2 h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-2 p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-2 .card-2-infos {
+  padding: 16px;
+}
+
+.checkout-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: #0056b3;
 }
