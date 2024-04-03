@@ -41,11 +41,12 @@
 </head>
 <body>
   <h1>Filter Options</h1>
+  <form action="/places" method="GET">
+  <!--
   <label for="place_type">Place Type:</label><br>
-  <form action="<%= search_path %>" method="GET">
     <div class="row">
       <div class="column">
-        <!-- Generate checkboxes based on property types from Place model -->
+        Generate checkboxes based on property types from Place model
         <% Place::PLACE_TYPES.each_with_index do |place_type, index| %>
           <% if index % 3 == 0 %>
             <input type="checkbox" id="<%= place_type.downcase %>" name="place_type[]" value="<%= place_type %>">
@@ -53,8 +54,8 @@
           <% end %>
         <% end %>
       </div>
-      <div class="column">
-        <!-- Second column -->
+      <div class="column"
+      Second column
         <% Place::PLACE_TYPES.each_with_index do |place_type, index| %>
           <% if index % 3 == 1 %>
             <input type="checkbox" id="<%= place_type.downcase %>" name="place_type[]" value="<%= place_type %>">
@@ -63,7 +64,7 @@
         <% end %>
       </div>
       <div class="column">
-        <!-- Third column -->
+        Third column
         <% Place::PLACE_TYPES.each_with_index do |place_type, index| %>
           <% if index % 3 == 2 %>
             <input type="checkbox" id="<%= place_type.downcase %>" name="place_type[]" value="<%= place_type %>">
@@ -71,7 +72,7 @@
           <% end %>
         <% end %>
       </div>
-    </div>
+    </div> -->
 
     <!-- Pet Size options -->
     <div class="row pet-size-options">
@@ -84,7 +85,7 @@
       </div>
     </div>
 
-    <!-- Special characteristics options-->
+    <!-- Special characteristics options
     <div class="row special-characteristics-options">
       <div class="column">
         <label for="special_characteristics">Special Characteristics:</label><br>
@@ -93,9 +94,9 @@
           <label for="<%= characteristic.downcase %>" class="checkbox-label"><%= characteristic %></label><br>
         <% end %>
       </div>
-    </div>
+    </div> -->
 
-    <!-- Ratings options -->
+    <!-- Ratings options
     <div class="row ratings-options">
       <div class="column">
         <label for="ratings">Ratings:</label><br>
@@ -110,16 +111,16 @@
         <input type="checkbox" id="5_stars" name="ratings[]" value="5">
         <label for="5_stars" class="checkbox-label"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label><br>
       </div>
-    </div>
+    </div> -->
 
-    <!-- Proximity location filter -->
+    <!-- Proximity location filter
     <div class="row proximity-options">
       <div class="column">
         <label for="proximity">Proximity (km):</label><br>
         <input type="range" id="proximity" name="proximity" min="0" max="100" class="proximity-slider">
         <output for="proximity" id="proximity-value">50 km</output>
       </div>
-    </div>
+    </div> -->
     <br>
     <!-- Reset button -->
     <input type="reset" value="Reset">

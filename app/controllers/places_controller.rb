@@ -20,6 +20,9 @@ class PlacesController < ApplicationController
       @places = @places.where("place_name ILIKE ?", "%#{params[:query]}%")
     end
 
+    @places = @places.where(tag_smallpet: true) if params[:size]&.include?('Small')
+    @places = @places.where(tag_mediumpet: true) if params[:size]&.include?('Medium')
+    @places = @places.where(tag_largepet: true) if params[:size]&.include?('Big')
     # Markers for the map
     @markers = @places.geocoded.map do |place|
       {
@@ -33,15 +36,15 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
 
-  def self.search(params)
-    place_type = params[:place_type]
+  def search(params)
+    #place_type = params[:place_type]
     size = params[:size]
-    special_characteristics = params[:special_characteristics]
+    #special_characteristics = params[:special_characteristics]
     #ratings = params[:ratings]
    # proximity = params[:proximity]
-    filtered_places = Place.filter(place_type, size, special_characteristics) #ratings, proximity)
+    filtered_places = Place.filter(size) #ratings, proximity)
     # You can return filtered_places directly or process it further as needed
-    puts filtered_places
+    render 'search'
   end
 
   private
