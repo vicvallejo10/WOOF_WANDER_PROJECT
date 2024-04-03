@@ -6,7 +6,7 @@
 <%# Search bar %>
 <div class="container">
 <div class="row justify-content-start">
-  <div class="col-sm-8 my-3">
+  <div class="col-sm-2 my-1">
     <%= form_with url: places_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
             params[:query],
@@ -15,6 +15,10 @@
         %>
       <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
     <% end %>
+  </div>
+  <%# <div class="col-sm-2 my-1"> %>
+    <%= link_to "Filter", filter_options_path, class: "btn btn-secondary" %>
+    <%# </div> %>
   </div>
 </div>
 
