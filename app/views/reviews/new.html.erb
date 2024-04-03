@@ -1,0 +1,9 @@
+<%= form_with(model: [@place, @review]) do |form| %>
+  <%= form.label :content %>
+  <%= form.text_area :content %>
+
+  <%= form.label :rating %>
+  <%= form.number_field :rating %>
+
+  <%= form.submit "Submit Review" %>
+<% end %>

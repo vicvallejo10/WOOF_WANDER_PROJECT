@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'filter_options/index'
   devise_for :users
   root to: "pages#home"
+
   get '/explore', to: 'pages#explore'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
