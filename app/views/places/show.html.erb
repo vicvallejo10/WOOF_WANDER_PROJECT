@@ -1,0 +1,39 @@
+<%# <%= link_to 'View Details', place_path(@place) %>
+
+<div class="container">
+  <div class="header">
+    <h1><%= @place.place_name %></h1>
+    <!-- Images -->
+    <div class="images">
+      <!-- Add your images here -->
+      <img src="image1.jpg" alt="Image 1">
+      <img src="image2.jpg" alt="Image 2">
+      <!-- Add more images if needed -->
+    </div>
+    <!-- Take me there button -->
+    <button class="btn take-me-there">Take me there</button>
+    <!-- Back button -->
+    <button class="btn back">Back</button>
+  </div>
+
+  <div class="details">
+    <!-- Rating and category tags -->
+    <div class="tags">
+      <span class="tag">Rating: 4.5</span>
+      <span class="tag">Category: Dog Park</span>
+      <!-- Add more tags as needed -->
+    </div>
+    <!-- Description -->
+    <p class="description">
+      <p><%= @place.place_description %></p>
+    </p>
+    <!-- Review cards -->
+    <div class="reviews">
+      <div class="card">
+        <h2>Review Title</h2>
+        <p>Review content goes here...</p>
+      </div>
+      <!-- Add more review cards as needed -->
+    </div>
+  </div>
+</div>
