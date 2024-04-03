@@ -22,10 +22,6 @@
       display: table;
       clear: both;
     }
-    /* Indent property types and their options */
-    .property-type-options {
-      margin-left: 10px;
-    }
     /* Reduce width of property size options */
     .pet-size-options .checkbox-label {
       width: calc(90% - 25px); /* Adjust width to accommodate checkbox */
@@ -91,16 +87,10 @@
     <div class="row special-characteristics-options">
       <div class="column">
         <label for="special_characteristics">Special Characteristics:</label><br>
-        <input type="checkbox" id="offleash" name="offleash" value="true">
-        <label for="offleash" class="checkbox-label">Offleash</label><br>
-        <input type="checkbox" id="indoor" name="indoor" value="true">
-        <label for="indoor" class="checkbox-label">Indoor</label><br>
-        <input type="checkbox" id="outdoor" name="outdoor" value="true">
-        <label for="outdoor" class="checkbox-label">Outdoor</label><br>
-        <input type="checkbox" id="disposal_station" name="disposal_station" value="true">
-        <label for="disposal_station" class="checkbox-label">Disposal Station</label><br>
-        <input type="checkbox" id="water_access" name="water_access" value="true">
-        <label for="water_access" class="checkbox-label">Water Access</label><br>
+        <% Place::SPECIAL_CHARACTERISTICS.each do |characteristic| %>
+          <input type="checkbox" id="<%= characteristic.downcase %>" name="<%= characteristic.downcase %>" value="true">
+          <label for="<%= characteristic.downcase %>" class="checkbox-label"><%= characteristic %></label><br>
+        <% end %>
       </div>
     </div>
 
@@ -121,13 +111,33 @@
       </div>
     </div>
 
+    <!-- Proximity location filter -->
+    <div class="row proximity-options">
+      <div class="column">
+        <label for="proximity">Proximity (km):</label><br>
+        <input type="range" id="proximity" name="proximity" min="0" max="100" class="proximity-slider">
+        <output for="proximity" id="proximity-value">50 km</output>
+      </div>
+    </div>
     <br>
-
     <!-- Reset button -->
     <input type="reset" value="Reset">
 
     <!-- Submit button -->
     <input type="submit" value="Apply Filters">
   </form>
+
+  <script>
+    // Get the slider
+    var slider = document.getElementById("proximity");
+    // Get the output element
+    var output = document.getElementById("proximity-value");
+    // Set the initial value
+    output.innerHTML = slider.value + " km";
+    // Update the output value when slider value changes
+    slider.oninput = function() {
+      output.innerHTML = this.value + " km";
+    }
+  </script>
 </body>
 </html>
