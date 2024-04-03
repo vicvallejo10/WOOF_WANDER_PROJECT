@@ -1,2 +1,27 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- Welcome message with owner's name -->
+<div class="container">
+  <h1>Hello <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
+
+  <%# Banner displaying the picture of the user's pet%>
+  <div class="card-2">
+    <img src="https://cdn.sanity.io/images/4ij0poqn/production/048e8808578046141219b1ae2cea6016d348826f-1200x700.jpg" />
+    <div class="card-2-infos">
+      <h2>Pet Name</h2>
+      <p>Product description with <strong>relevant info</strong> only.</p>
+    </div>
+  </div>
+
+  <!-- card-2 displaying the recommendation of the day -->
+  <div class="recommendation">
+    <h2>Recommendation of the Day</h2>
+    <div class="card-2">
+      <img src="https://static.actu.fr/uploads/2021/04/jardin-du-luxembourg-paris-patrimoine-histoire-policiers-prefecture-de-police-masque-covid19-coronavirus-senat.png" alt="Jardin du Luxembourg">
+      <div class="card-2-infos">
+        <h2>You might like to checkout: Jardin du Luxembourg</h2>
+        <p>75006 Paris</p>
+        <!-- Button to checkout this place -->
+        <%= link_to "Checkout this place", place_path(@place), class: "btn checkout-button" %>
+      </div>
+    </div>
+  </div>
+</div>
