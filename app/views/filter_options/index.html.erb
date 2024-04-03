@@ -8,9 +8,8 @@
       margin-left: 20px;
     }
     .checkbox-label {
-      margin-left: 10px;
       display: inline-block;
-      width: calc(100% - 25px); /* Adjust width to accommodate checkbox */
+      margin-left: 5px;
     }
     .column {
       float: left;
@@ -35,9 +34,9 @@
     .row {
       margin-bottom: 10px;
     }
-    /* Adjust margins for special characteristics options */
-    .special-characteristics-options {
-      margin-left: 10px;
+    /* Align checkboxes and labels */
+    input[type="checkbox"] {
+      vertical-align: middle;
     }
   </style>
   <!-- Include Font Awesome CSS -->
@@ -105,8 +104,29 @@
       </div>
     </div>
 
+    <!-- Ratings options -->
+    <div class="row ratings-options">
+      <div class="column">
+        <label for="ratings">Ratings:</label><br>
+        <input type="checkbox" id="1_star" name="ratings[]" value="1">
+        <label for="1_star" class="checkbox-label"><i class="fas fa-star"></i></label><br>
+        <input type="checkbox" id="2_stars" name="ratings[]" value="2">
+        <label for="2_stars" class="checkbox-label"><i class="fas fa-star"></i><i class="fas fa-star"></i></label><br>
+        <input type="checkbox" id="3_stars" name="ratings[]" value="3">
+        <label for="3_stars" class="checkbox-label"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label><br>
+        <input type="checkbox" id="4_stars" name="ratings[]" value="4">
+        <label for="4_stars" class="checkbox-label"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label><br>
+        <input type="checkbox" id="5_stars" name="ratings[]" value="5">
+        <label for="5_stars" class="checkbox-label"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></label><br>
+      </div>
+    </div>
+
     <br>
 
+    <!-- Reset button -->
+    <input type="reset" value="Reset">
+
+    <!-- Submit button -->
     <input type="submit" value="Apply Filters">
   </form>
 </body>
