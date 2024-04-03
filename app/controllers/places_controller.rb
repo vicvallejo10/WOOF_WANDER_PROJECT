@@ -29,4 +29,29 @@ class PlacesController < ApplicationController
     end
   end
 
+  def show
+    @place = Place.find(params[:id])
+  end
+
+  private
+
+  def place_params
+    params.require(:place).permit(:place_name,
+                                  :place_description,
+                                  :place_type,
+                                  :address,
+                                  :city,
+                                  :country,
+                                  :zip_code,
+                                  :longitude,
+                                  :latitude,
+                                  :tag_offleash,
+                                  :tag_wateraccess,
+                                  :tag_outdoor,
+                                  :tag_indoor,
+                                  :tag_smallpet,
+                                  :tag_mediumpet,
+                                  :tag_largepet,
+                                  :tag_disposalstation)
+  end
 end
