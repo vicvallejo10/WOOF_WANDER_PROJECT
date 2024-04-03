@@ -1,10 +1,9 @@
 class Place < ApplicationRecord
-  PROPERTY_TYPES = ["Restaurant", "Park", "Beach", "Lake", "Garden", "Museum", "Library", "Hotel", "Cafe", "Accommodation", "Store", "Workspace", "Hiking Area/Trail", "Event/Activity", "Veterinary Clinic", "Veterinary Hospital", "Grooming Station", "Pet Store"].freeze
-
+  PLACE_TYPES = ["Restaurant", "Park", "Beach", "Lake", "Garden", "Museum", "Library", "Hotel", "Cafe", "Accommodation", "Store", "Workspace", "Hiking Area/Trail", "Event/Activity", "Veterinary Clinic", "Veterinary Hospital", "Grooming Station", "Pet Store"].freeze
   SPECIAL_CHARACTERISTICS = ["Offleash", "Indoor", "Outdoor", "Disposal Station", "Water Access"].freeze
 
   # Validation for property type
-  validates :property_type, inclusion: { in: PROPERTY_TYPES, allow_blank: true }
+  validates :place_type, inclusion: { in: PLACE_TYPES, allow_blank: true }
 
   # Associations
   has_many :lists
