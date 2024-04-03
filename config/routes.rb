@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'filter_options/index'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -12,4 +13,8 @@ Rails.application.routes.draw do
   resources :places do
     resources :reviews, only: [:new, :create]
   end
+
+  # route for the filter options page
+  get '/filter_options', to: 'filter_options#index', as: 'filter_options'
+
 end
