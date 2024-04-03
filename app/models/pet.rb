@@ -2,8 +2,8 @@ class Pet < ApplicationRecord
   belongs_to :user
 
   # Define pet size options as a constant array
-  PET_SIZES = ["Small", "Medium", "Large"].freeze
+  SIZES = ["Small", "Medium", "Big"]
 
   # Validation for pet size
-  validates :pet_size, inclusion: { in: PET_SIZES, allow_blank: true }
+  validates :size, inclusion: { in: SIZES, allow_blank: true }
 end

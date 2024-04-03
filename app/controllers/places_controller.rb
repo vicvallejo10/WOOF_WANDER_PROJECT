@@ -33,6 +33,17 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
 
+  def self.search(params)
+    place_type = params[:place_type]
+    size = params[:size]
+    special_characteristics = params[:special_characteristics]
+    #ratings = params[:ratings]
+   # proximity = params[:proximity]
+    filtered_places = Place.filter(place_type, size, special_characteristics) #ratings, proximity)
+    # You can return filtered_places directly or process it further as needed
+    puts filtered_places
+  end
+
   private
 
   def place_params

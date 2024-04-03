@@ -1,0 +1,16 @@
+<% if params[:place_type].present? %>
+  <h2>Selected Filters:</h2>
+  <p>Property Type: <%= params[:place_type] %></p>
+<% end %>
+
+<% if @places.any? %>
+  <h2>Places Found:</h2>
+  <ul>
+    <% @places.each do |place| %>
+      <li><%= place.name %></li>
+      <!-- Display other place attributes as needed -->
+    <% end %>
+  </ul>
+<% else %>
+  <p>No places found.</p>
+<% end %>
