@@ -1,0 +1,24 @@
+<!-- app/views/accounts/show.html.erb -->
+<!DOCTYPE html>
+<html lang="en">
+
+  <div>
+    <h2><%= @user.first_name %></h2>
+  </div>
+
+  <div>
+    <h3>Your Pets:</h3>
+    <% @user.pets.each do |pet| %>
+      <p><%= link_to pet.name, pet %></p>
+    <% end %>
+    <%= link_to 'Add Pet', new_pet_path %>
+  </div>
+
+  <div>
+    <h3>Pets Favorite Place:</h3>
+    <% @user.place.each do |place| %>
+      <p><%= link_to place.name, place %></p>
+    <% end %>
+  </div>
+
+</html>
