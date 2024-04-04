@@ -1,5 +1,4 @@
-<%# <%= link_to 'View Details', place_path(@place) %>
-
+<%# Display place details %>
 <div class="container">
   <div class="header">
     <h1><%= @place.place_name %></h1>
@@ -19,21 +18,31 @@
   <div class="details">
     <!-- Rating and category tags -->
     <div class="tags">
-      <span class="tag">Rating: 4.5</span>
-      <span class="tag">Category: Dog Park</span>
+      <span class="tag">Rating: <%= @place.average_rating %></span>
+      <span class="tag">Category: <%= @place.place_type %></span>
       <!-- Add more tags as needed -->
     </div>
     <!-- Description -->
     <p class="description">
-      <p><%= @place.place_description %></p>
+      <%= @place.place_description %>
     </p>
     <!-- Review cards -->
     <div class="reviews">
-      <div class="card">
-        <h2>Review Title</h2>
-        <p>Review content goes here...</p>
-      </div>
-      <!-- Add more review cards as needed -->
+      <% if @place.reviews.any? %>
+        <% @place.reviews.each do |review| %>
+          <div class="card">
+            <h2><%= review.title %></h2>
+            <p><%= review.description %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No reviews available yet.</p>
+      <% end %>
     </div>
+
+    <!-- Add Review section -->
+    <% unless current_user.has_reviewed?(@place) %>
+      <%= render 'reviews/form', review: @review %>
+    <% end %>
   </div>
 </div>

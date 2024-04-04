@@ -6,4 +6,7 @@ class User < ApplicationRecord
   has_many :pets
   has_many :lists
   has_many :reviews
+  def has_reviewed?(place)
+    reviews.exists?(place_id: place.id)
+  end
 end
