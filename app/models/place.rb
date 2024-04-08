@@ -19,4 +19,9 @@ class Place < ApplicationRecord
   # Geocoding to get information from address
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+
+  # Calculate the average rating based on associated reviews
+  def average_rating
+    reviews.average(:rating).to_f
+  end
 end

@@ -1,46 +1,118 @@
 <%# Hero %>
 <div class="hero">
-<h1>Explore</h1>
+  <h1>Explore</h1>
 </div>
 
 <%# Search bar %>
 <div class="container">
-<div class="row justify-content-start">
-  <div class="col-sm-2 my-1">
-    <%= form_with url: places_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Type a keyword"
-        %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-  <%# <div class="col-sm-2 my-1"> %>
-    <%= link_to "Filter", filter_options_path, class: "btn btn-secondary" %>
-    <%# </div> %>
+  <div class="row justify-content-start">
+    <div class="col-sm-2 my-1">
+      <%= form_with url: places_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Type a keyword"
+          %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="col-sm-2 my-1">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
+  APPLY FILTER </button>
+     </div>
   </div>
 </div>
 
-    <%# Map %>
-    <div class="col-">
+<!-- Modal Charm 5-->
+<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <%= form_tag(places_path, method: :get, id: "filterForm") do %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="filterModalLabel">Filter Options</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <!-- First Column (Place Types) -->
+              <div class="col-md-6">
+                <h6>Place Types:</h6>
+                <% Place::PLACE_TYPES.each do |place_type| %>
+                  <div class="form-check">
+                    <%= radio_button_tag 'place_type', place_type, params[:place_type]==place_type, class: 'form-check-input', id: "placeType_#{place_type.downcase}" %>
+                    <%= label_tag "placeType_#{place_type.downcase}", place_type, class: 'form-check-label' %>
+                  </div>
+                <% end %>
+              </div>
+              <!-- Second Column (Size and Special Characteristics) -->
+              <div class="col-md-6">
+                <!-- Size Filter -->
+                <div>
+                  <h6>Size:</h6>
+                  <div class="form-check">
+                    <%= radio_button_tag(:size, 'Small', params[:size]=='Small', class: 'form-check-input', id: 'smallSize') %>
+                    <%= label_tag('smallSize', 'Small', class: 'form-check-label') %>
+                  </div>
+                  <div class="form-check">
+                    <%= radio_button_tag(:size, 'Medium', params[:size]=='Medium', class: 'form-check-input', id: 'mediumSize') %>
+                    <%= label_tag('mediumSize', 'Medium', class: 'form-check-label') %>
+                  </div>
+                  <div class="form-check">
+                    <%= radio_button_tag(:size, 'Large', params[:size]=='Large', class: 'form-check-input', id: 'largeSize') %>
+                    <%= label_tag('largeSize', 'Large', class: 'form-check-label') %>
+                  </div>
+                </div>
+                <!-- Special Characteristics Filter -->
+                <div class="mt-4">
+                  <h6>Special Characteristics:</h6>
+                  <% Place::SPECIAL_CHARACTERISTICS.each do |characteristic| %>
+                    <div class="form-check">
+                      <%= radio_button_tag 'special_characteristic', characteristic, params[:special_characteristic]==characteristic, class: 'form-check-input', id: "specialCharacteristic_#{characteristic.downcase}" %>
+                      <%= label_tag "specialCharacteristic_#{characteristic.downcase}", characteristic, class: 'form-check-label' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="applyFilterButton">Apply Filter</button>
+          <button type="button" class="btn btn-danger" id="resetFilterButton">Reset</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!-- Map Section -->
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
       <div class="map">
-        <div style="width: fit; height: 500px;"
+        <div style="width: 100%; height: 500px;"
           data-controller="map"
           data-map-markers-value="<%= @markers.to_json %>"
           data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
     </div>
+  </div>
+</div>
 
-
-
+<!-- Places Section -->
+<div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-sm-8">
       <div id="places">
         <% if @places.any? %>
           <% @places.each do |place| %>
-            <h4><%= place.place_name %></h4>
+            <!-- Use link_to helper to create a hyperlink -->
+            <h4><%= link_to place.place_name, place_path(place) %></h4>
             <p><%= place.place_description %></p>
           <% end %>
         <% else %>
@@ -50,3 +122,42 @@
     </div>
   </div>
 </div>
+
+
+<!-- JavaScript for Modal Actions -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const applyFilterButton = document.getElementById("applyFilterButton");
+    const resetFilterButton = document.getElementById("resetFilterButton");
+    const filterForm = document.getElementById("filterForm");
+
+    // Event listener for Apply Filter button
+    if (applyFilterButton && filterForm) {
+      applyFilterButton.addEventListener("click", () => {
+        filterForm.submit();
+      });
+    }
+
+    // Event listener for Reset button
+    if (resetFilterButton) {
+      resetFilterButton.addEventListener("click", () => {
+        // Uncheck all radio buttons for size
+        document.querySelectorAll('input[name="size"]').forEach(radio => {
+          radio.checked = false;
+        });
+
+        // Uncheck all radio buttons for special characteristics
+        document.querySelectorAll('input[name="special_characteristic"]').forEach(radio => {
+          radio.checked = false;
+        });
+        // Uncheck all radio buttons for place types
+        document.querySelectorAll('input[name="place_type"]').forEach(radio => {
+          radio.checked = false;
+        });
+      });
+    }
+  });
+</script>
