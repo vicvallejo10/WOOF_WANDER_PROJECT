@@ -1,0 +1,12 @@
+<h2>user profile</h2>
+<p><%= @user.first_name %></p>
+<p><%= @user.email %></p>
+
+<h2>My Pets</h2>
+<% if @pets.present? %>
+  <% @pets.each do |pet| %>
+    <!-- show every pet's profile -->
+  <% end %>
+<% else %>
+  <p>No pet information yet</p>
+<% end %>

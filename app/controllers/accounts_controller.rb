@@ -1,8 +1,9 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :update]
+  before_action :set_account, only: [ :update]
 
-  def show
-    @account = current_user.account
+  def accountinformation
+    @user = current_user
+    @pets = @user.pets
   end
 
   def update
