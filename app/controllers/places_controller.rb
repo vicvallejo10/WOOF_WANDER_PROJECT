@@ -34,6 +34,9 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
+    @review = Review.new # Initialize a new review object for the form
+    @total_reviews_count = @place.reviews.count
+    # @reviews = @place.reviews.order(created_at: :description :title)
   end
 
   def search(params)
