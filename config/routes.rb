@@ -28,6 +28,13 @@ Rails.application.routes.draw do
     end
   end
 
+  # show pets in accountinformation
+  resources :accounts do
+    member do
+      get 'pets', to: 'accounts#accountinformation', as: 'account_pets'
+    end
+  end
+
   get '/places/search', to: 'places#search', as: 'search'
 
 end

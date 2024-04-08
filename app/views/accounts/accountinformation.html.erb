@@ -1,0 +1,125 @@
+<head>
+  <link href="path/to/icons8-sprite.svg" rel="stylesheet">
+</head>
+
+<div class="header-section text-center">
+  <div class="header-left">
+    <div class="round-image-container">
+      <%# add user profile pictrue %>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="user-profile-text">
+      <h2>Welcome <%= @user.first_name %>!</h2>
+    </div>
+  </div>
+</div>
+
+<div class="management-section">
+  <div class="profile-picture-box">
+    <div class="grey-background rounded-corners">
+      <p>Profile Picture</p>
+    </div>
+  </div>
+  <div class="add-pets-box">
+    <div class="grey-background rounded-corners">
+      <p>Add Pet</p>
+    </div>
+  </div>
+</div>
+
+<div class="user-details">
+  <h3>My Profile</h3>
+  <p>First Name: <%= current_user.first_name %></p>
+  <p>Last Name: <%= current_user.last_name %></p>
+  <p>Email: <%= current_user.email %></p>
+
+<div class="pets-details">
+  <h3>My Pets</h3>
+  <% if @pets.any? %>
+    <% @pets.each do |pet| %>
+      <div class="pet-item">
+        <p>Pet name: <%= pet.pet_name %> &nbsp;&nbsp; Breed: <%= pet.breed %> <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/visible--v1.png" alt="visible--v1"/> <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/pencil--v1.png" alt="pencil--v1"/></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No pet information yet</p>
+  <% end %>
+</div>
+
+<style>
+  .round-image-container {
+    width: 50px;
+    height: 50px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .round-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .header-left,
+  .header-right {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .header-section {
+    margin: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-right .user-profile-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .header-right .user-profile-text h2 {
+    margin: 0;
+    text-align: center;
+  }
+
+  .management-section {
+    margin: 30px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .management-section .profile-picture-box,
+  .management-section .add-pets-box {
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .grey-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .grey-background p {
+  margin: 0;
+  text-align: center;
+}
+
+  .user-details {
+    margin: 30px;
+  }
+
+  .grey-background {
+    background-color: #606060;
+    padding: 10px;
+    border-radius: 5px;
+  }
+</style>
