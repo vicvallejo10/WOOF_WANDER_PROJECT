@@ -27,48 +27,56 @@
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="filterModalLabel">Filter Options</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-4">
-              <!-- Size Filter -->
-              <h6>Size:</h6>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="sizeFilter" id="smallSize" value="small">
-                <label class="form-check-label" for="smallSize">
-                  Small
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="sizeFilter" id="mediumSize" value="medium">
-                <label class="form-check-label" for="mediumSize">
-                  Medium
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="sizeFilter" id="largeSize" value="large">
-                <label class="form-check-label" for="largeSize">
-                  Large
-                </label>
+      <%= form_tag(places_path, method: :get, id: "filterForm") do %>
+        <div class="modal-header">
+          <h5 class="modal-title" id="filterModalLabel">Filter Options</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-4">
+                <!-- Size Filter -->
+                <h6>Size:</h6>
+                <div class="form-check">
+                  <%= radio_button_tag(:size, 'Small', false, class: 'form-check-input', id: 'smallSize') %>
+                  <%= label_tag('smallSize', 'Small', class: 'form-check-label') %>
+                </div>
+                <div class="form-check">
+                  <%= radio_button_tag(:size, 'Medium', false, class: 'form-check-input', id: 'mediumSize') %>
+                  <%= label_tag('mediumSize', 'Medium', class: 'form-check-label') %>
+                </div>
+                <div class="form-check">
+                  <%= radio_button_tag(:size, 'Large', false, class: 'form-check-input', id: 'largeSize') %>
+                  <%= label_tag('largeSize', 'Large', class: 'form-check-label') %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="applyFilterButton">Apply Filter</button>
-        <button type="button" class="btn btn-danger" id="resetFilterButton">Reset</button>
-      </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" id="applyFilterButton">Apply Filter</button>
+          <button type="button" class="btn btn-danger" id="resetFilterButton">Reset</button>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const applyFilterButton = document.getElementById("applyFilterButton");
+    const filterForm = document.getElementById("filterForm");
+
+    if (applyFilterButton && filterForm) {
+      applyFilterButton.addEventListener("click", () => {
+        filterForm.submit();
+      });
+    }
+  });
+</script>
 
 
 <%# Map %>
@@ -115,7 +123,7 @@
   document.addEventListener("DOMContentLoaded", function() {
     // Function to reset the radio buttons
     function resetRadioButtons() {
-      document.querySelectorAll('input[name="sizeFilter"]').forEach(function(radio) {
+      document.querySelectorAll('input[name="size"]').forEach(function(radio) {
         radio.checked = false;
       });
     }
@@ -126,7 +134,7 @@
     });
     document.getElementById("applyFilterButton").addEventListener("click", function() {
       // Logic to apply the selected filter
-      var selectedSize = document.querySelector('input[name="sizeFilter"]:checked').value;
+      var selectedSize = document.querySelector('input[name="size"]:checked').value;
       // You can perform further actions based on the selected filter
       console.log("Selected Size: " + selectedSize);
       // Close the modal after applying the filter
