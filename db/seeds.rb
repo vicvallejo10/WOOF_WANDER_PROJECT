@@ -63,7 +63,7 @@ drake = {
   color: "Gray and White",
   sterilized: false,
   vaccine_card: "Last vaccine applied on 2024",
-  user: User.first
+  user: charm
 }
 
 [freyja, malone, drake].each do |attributes|
