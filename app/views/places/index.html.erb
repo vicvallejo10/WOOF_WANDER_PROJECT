@@ -1,12 +1,12 @@
+
+<%# Search bar %>
+<div class="container">
 <%# Hero %>
 <div class="hero">
   <h1>Explore</h1>
 </div>
-
-<%# Search bar %>
-<div class="container">
   <div class="row justify-content-start">
-    <div class="col-sm-2 my-1">
+    <div class="col-sm-6 my-2">
       <%= form_with url: places_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
               params[:query],
@@ -16,9 +16,9 @@
         <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
       <% end %>
     </div>
-    <div class="col-sm-2 my-1">
+    <div class="col-sm-6 my-2">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
-  APPLY FILTER </button>
+  Filters </button>
      </div>
   </div>
 </div>
