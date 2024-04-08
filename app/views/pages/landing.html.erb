@@ -1,13 +1,19 @@
 <!-- Welcome message with owner's name -->
 <div class="container">
-
-<!-- Home page content -->
-<div class="container">
+  <!-- Home page content -->
   <% if user_signed_in? %>
     <!-- Display content for logged-in users -->
     <h1>Welcome, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
     <!-- Add additional content for logged-in users -->
-     <!-- Banner displaying the picture of the user's pet -->
+  <% else %>
+    <!-- Display content for guests -->
+    <h1>Welcome to Woof Wander!</h1>
+    <p>Please log in to access all features.</p>
+    <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
+    <!-- You can customize the login button as needed -->
+  <% end %>
+
+  <!-- Banner displaying the picture of the user's pet -->
   <div class="card-2">
     <img src="https://cdn.sanity.io/images/4ij0poqn/production/048e8808578046141219b1ae2cea6016d348826f-1200x700.jpg" />
     <div class="card-2-infos">
@@ -29,11 +35,4 @@
       </div>
     </div>
   </div>
-  <% else %>
-    <!-- Display content for guests -->
-    <h1>Welcome to Woof Wander!</h1>
-    <p>Please log in to access all features.</p>
-    <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
-    <!-- You can customize the login button as needed -->
-  <% end %>
 </div>
