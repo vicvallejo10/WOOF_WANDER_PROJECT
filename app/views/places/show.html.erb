@@ -28,6 +28,12 @@
     </p>
     <!-- Review cards -->
     <div class="reviews">
+
+      <div class="card">
+        <h2>Review Title</h2>
+        <p>Review content goes here...</p>
+      </div>
+
       <% if @place.reviews.any? %>
         <% @place.reviews.each do |review| %>
           <div class="card">
@@ -38,6 +44,7 @@
       <% else %>
         <p>No reviews available yet.</p>
       <% end %>
+
     </div>
 
     <!-- Add Review section -->
