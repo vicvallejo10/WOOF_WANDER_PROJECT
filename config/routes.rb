@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'filter_options/index'
   devise_for :users
-  root to: "pages#home"
+  root to: "pages#home" # Define your root route once
   get '/explore', to: 'pages#explore'
   get '/accountinformation', to: 'account#accountinformation'
 
@@ -18,14 +18,13 @@ Rails.application.routes.draw do
   end
 
   # Route for the filter options page
-  get '/filter_options', to: 'filter_options#index', as: 'filter_options'
+  #get '/filter_options', to: 'filter_options#index', as: 'filter_options'
 
-  root 'accounts#show'
-  resources :users, only: [:show, :edit, :update] do
-    resources :pets, except: [:index, :show]
-    resources :place, only: [:index, :destroy]
-  end
-  
+  #root 'accounts#show'
+  #resources :users, only: [:show, :edit, :update] do
+    #resources :pets, except: [:index, :show]
+    #resources :place, only: [:index, :destroy]
+  #end
+
   get '/places/search', to: 'places#search', as: 'search'
-
 end
