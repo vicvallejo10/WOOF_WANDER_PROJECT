@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home" # Define your root route once
   get '/explore', to: 'pages#explore'
-  get '/accountinformation', to: 'account#accountinformation'
+  get '/accountinformation', to: 'accounts#accountinformation'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -20,6 +20,25 @@ Rails.application.routes.draw do
   # Route for the filter options page
   #get '/filter_options', to: 'filter_options#index', as: 'filter_options'
 
+# This is Feiyue's Code
+  # resources :users, only: [:show, :edit, :update] do
+  # end
+  resources :users, only: [] do
+    member do
+      get 'accounts', to: 'accounts#accountinformation', as: 'accounts'
+    end
+  end
+
+  # show pets in accountinformation
+  resources :accounts do
+    member do
+      get 'pets', to: 'accounts#accountinformation', as: 'account_pets'
+    end
+  end
+
+  get '/places/search', to: 'places#search', as: 'search'
+
+  # This is the original Code
   #root 'accounts#show'
   #resources :users, only: [:show, :edit, :update] do
     #resources :pets, except: [:index, :show]
