@@ -1,190 +1,258 @@
-
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
   <link href="path/to/icons8-sprite.svg" rel="stylesheet">
-</head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
 
-<div class="header-section text-center">
-  <div class="header-left">
-    <div class="round-image-container">
-      <%# add user profile pictrue %>
-    </div>
+    .header-section {
+      margin: 30px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .round-image-container {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #cccccc;
+    }
+
+    .user-profile-text h2 {
+      margin: 20px 0;
+    }
+
+    .management-section {
+      margin: 30px 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .profile-picture-box,
+    .add-pets-box {
+      width: 150px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #e9ecef;
+    }
+
+    .modal-dialog {
+      max-width: 500px;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .modal-body label {
+      font-weight: bold;
+    }
+
+    .user-details,
+    .pets-details {
+      margin: 30px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .pet-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .pet-item:last-child {
+      border-bottom: none;
+    }
+
+    .pet-details {
+      display: flex;
+      align-items: center;
+    }
+
+    .pet-label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .pet-icons {
+      display: flex;
+      align-items: center;
+    }
+
+    .pet-icons img {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+
+
+.radio-inline {
+  display: inline-block;
+  margin-right: 15px;
+}
+input[type="radio"] {
+  display: none;
+}
+.radio-label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #fff;
+  font-weight: light;
+  margin-right: 10px;
+}
+input[type="radio"]:checked + .radio-label {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+    }
+  </style>
+</head>
+<body>
+
+<div class="header-section">
+  <div class="round-image-container">
   </div>
-  <div class="header-right">
-    <div class="user-profile-text">
-      <h2>Welcome <%= @user.first_name %>!</h2>
-    </div>
+  <div class="user-profile-text">
+    <h2>Welcome <%= @user.first_name %>!</h2>
   </div>
 </div>
 
-<div class="management-section">
-  <div class="profile-picture-box">
-    <div class="grey-background rounded-corners">
-      <p>Profile Picture</p>
-    </div>
-  </div>
-  <div class="add-pets-box">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= current_user.first_name %>">Add pet</button>
-    </div>
-  </div>
+<div class="button-container">
+   <button type="button" class="btn btn-primary">Change Picture</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addpetModal" data-whatever="<%= current_user.first_name %>">Add Pet</button>
+</div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addpetModal" tabindex="-1" role="dialog" aria-labelledby="addpetModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Pet</h5>
+        <h5 class="modal-title" id="addpetModalLabel">Add Pet</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form id="addPetForm" enctype="multipart/form-data">
-          <div class="form-group row">
-            <label for="pet-name" class="col-sm-4 col-form-label">Pet Name:*</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="pet-name" name="pet_name" required>
-            </div>
+        <%= simple_form_for :pet, url: '/pets', method: :post, html: { multipart: true, id: 'addPetForm' } do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-group">
+            <label for="pet_name">Pet Name*:</label>
+            <%= f.text_field :pet_name, required: true, class: "form-control", id: "pet_name" %>
           </div>
-          <div class="form-group row">
-            <label for="birthdate" class="col-sm-4 col-form-label">Birth Date:*</label>
-            <div class="col-sm-8">
-              <input type="date" class="form-control" id="birthdate" name="birthdate" required>
-            </div>
+
+          <div class="form-group">
+            <label for="birthdate">Birth Date:</label>
+            <%= f.date_field :birthdate, required: false, class: "form-control", id: "birthdate" %>
           </div>
-          <div class="form-group row">
-            <label for="microchip-number" class="col-sm-4 col-form-label">Microchip No.:</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="microchip-number" name="microchip_number">
-            </div>
+
+          <div class="form-group">
+            <label for="microchip_number">Microchip No.:</label>
+            <%= f.text_field :microchip_number, class: "form-control", id: "microchip_number" %>
           </div>
-          <div class="form-group row">
-            <label for="breed" class="col-sm-4 col-form-label">Breed:*</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="breed" name="breed" required>
-            </div>
+
+          <div class="form-group">
+            <label for="breed">Breed:</label>
+            <%= f.text_field :breed, required: false, class: "form-control", id: "breed" %>
           </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Size:*</label>
-            <div class="col-sm-8">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="size" id="sizeSmall" value="Small" required>
-                <label class="form-check-label" for="sizeSmall">Small</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="size" id="sizeMedium" value="Medium">
-                <label class="form-check-label" for="sizeMedium">Medium</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="size" id="sizeLarge" value="Large">
-                <label class="form-check-label" for="sizeLarge">Large</label>
-              </div>
-            </div>
+
+          <div class="form-group">
+            <label>Size*:</label><br>
+            <label class="radio-inline">
+              <%= f.radio_button :size, "Small", required: true, class: "radio-button" %>
+              <span class="radio-label">Small</span>
+            </label>
+            <label class="radio-inline">
+              <%= f.radio_button :size, "Medium", class: "radio-button" %>
+              <span class="radio-label">Medium</span>
+            </label>
+            <label class="radio-inline">
+              <%= f.radio_button :size, "Large", class: "radio-button" %>
+              <span class="radio-label">Large</span>
+            </label>
           </div>
-          <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Sterilized:*</label>
-            <div class="col-sm-8">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sterilized" id="sterilizedYes" value="Yes" required>
-                <label class="form-check-label" for="sterilizedYes">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sterilized" id="sterilizedNo" value="No">
-                <label class="form-check-label" for="sterilizedNo">No</label>
-              </div>
-            </div>
+
+          <div class="form-group">
+            <label>Sterilized:</label><br>
+            <label class="radio-inline">
+              <%= f.radio_button :sterilized, "Yes", class: "radio-button" %>
+              <span class="radio-label">Yes</span>
+            </label>
+            <label class="radio-inline">
+              <%= f.radio_button :sterilized, "No", class: "radio-button" %>
+              <span class="radio-label">No</span>
+            </label>
           </div>
-          <div class="form-group row">
-            <label for="color" class="col-sm-4 col-form-label">Color:</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="color" name="color">
-            </div>
+
+          <div class="form-group">
+            <label for="color">Color:</label>
+            <%= f.text_field :color, class: "form-control", id: "color" %>
           </div>
-          <div class="form-group row">
-            <label for="vaccine-card" class="col-sm-4 col-form-label">Vaccine Card:</label>
-            <div class="col-sm-8">
-              <input type="file" class="form-control-file" id="vaccine-card" name="vaccine_card">
-            </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <%= f.button :submit, "Add Pet", class: "btn btn-primary" %>
           </div>
-          <div class="form-group row">
-            <label for="pet-photo" class="col-sm-4 col-form-label">Pet Photo:</label>
-            <div class="col-sm-8">
-              <input type="file" class="form-control-file" id="pet-photo" name="pet_photo">
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="addPetButton">Add Pet</button>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-
-<!-- jQuery and Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-<style>
-  /* Custom CSS for form styling */
-  .modal-body .form-group.row {
-    margin-bottom: 20px; /* Add bottom margin between form groups */
-  }
-
-  /* Custom CSS to align labels with text boxes */
-  .modal-body .form-group.row .col-form-label {
-    text-align: right;
-    padding-right: 15px; /* Adjust as needed for spacing between label and input */
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    // Update modal title with fixed text
-    $('#exampleModal').on('show.bs.modal', function (event) {
-      var modal = $(this);
-      modal.find('.modal-title').text('Add Pet');
-    });
-
-    // Handle adding a new pet when Add Pet button in modal is clicked
-    $('#addPetButton').on('click', function() {
-      var formData = new FormData($('#addPetForm')[0]);
-
-      // Perform AJAX request to add pet
-      $.ajax({
-        url: '/pets', // Replace with your API endpoint
-        method: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          console.log('Pet added successfully:', response);
-          $('#exampleModal').modal('hide'); // Close the modal
-        },
-        error: function(xhr, status, error) {
-          console.error('Error adding pet:', error);
-          console.log('Response status:', status);
-          console.log('Response text:', xhr.responseText);
-        }
-      });
-    });
-  });
-</script>
 
 <div class="user-details">
   <h3>My Profile</h3>
   <p>First Name: <%= current_user.first_name %></p>
   <p>Last Name: <%= current_user.last_name %></p>
   <p>Email: <%= current_user.email %></p>
+</div>
 
 <div class="pets-details">
   <h3>My Pets</h3>
   <% if @pets.any? %>
     <% @pets.each do |pet| %>
       <div class="pet-item">
-        <p>Pet name: <%= pet.pet_name %> &nbsp;&nbsp; Breed: <%= pet.breed %> <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/visible--v1.png" alt="visible--v1"/> <img width="24" height="24" src="https://img.icons8.com/material-outlined/24/pencil--v1.png" alt="pencil--v1"/></p>
+        <div class="pet-details">
+          <span class="pet-label">Pet Name:</span>
+          <%= pet.pet_name %> &nbsp;&nbsp; Breed: <%= pet.breed %>
+        </div>
+        <div class="pet-icons">
+          <img src="https://img.icons8.com/material-outlined/24/visible--v1.png" alt="visible--v1" class="view-pet" data-pet-id="<%= pet.id %>"/>
+          <img src="https://img.icons8.com/material-outlined/24/pencil--v1.png" alt="pencil--v1"/>
+          <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="trash--v1" class="delete-pet" data-pet-id="<%= pet.id %>"/>
+        </div>
       </div>
     <% end %>
   <% else %>
@@ -192,79 +260,108 @@
   <% end %>
 </div>
 
-<style>
-  .round-image-container {
-    width: 50px;
-    height: 50px;
-    background-color: #cccccc;
-    border-radius: 50%;
-    overflow: hidden;
-  }
+<div class="modal fade" id="petDetailsModal" tabindex="-1" role="dialog" aria-labelledby="petDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="petDetailsModalLabel">Pet Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="petDetailsContent">
+        <div class="pet-details-container">
+          <!-- <img src="" alt="Pet Picture" id="petPicture" style="max-width: 100%; height: auto;"> -->
+          <p><strong>Pet Name:</strong> <span id="petName"></span></p>
+          <p><strong>Breed:</strong> <span id="petBreed"></span></p>
+          <p><strong>Size:</strong> <span id="petSize"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  .round-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-  .header-left,
-  .header-right {
-    display: inline-block;
-    vertical-align: middle;
-  }
+<script>
+  $(document).ready(function() {
+  $(document).on('click', '.view-pet', function() {
+    var petId = $(this).data('pet-id');
 
-  .header-section {
-    margin: 30px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+    $.ajax({
+      url: '/pets/' + petId,
+      method: 'GET',
+      dataType: 'json',
+      success: function(response) {
+        $('#petName').text(response.pet_name);
+        $('#petBreed').text(response.breed);
+        $('#petSize').text(response.size);
 
-  .header-right .user-profile-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
+        // Set the pet picture available
+        //if (response.picture_url) {
+          //$('#petPicture').attr('src', response.picture_url);
+        //} else {
+          // Set a default image if no picture is available
+          //$('#petPicture').attr('src', 'path/to/default/pet/image.jpg');}
 
-  .header-right .user-profile-text h2 {
-    margin: 0;
-    text-align: center;
-  }
+        // Show the modal
+        $('#petDetailsModal').modal('show');
+      },
+      error: function(xhr, status, error) {
+        console.error('Error fetching pet details:', error);
+      }
+    });
+  });
+    // Function to delete a pet via AJAX
+    function deletePet(petId) {
+      $.ajax({
+        url: '/pets/' + petId, // Assuming this is your delete endpoint for pets
+        method: 'DELETE',
+        dataType: 'json',
+        success: function(response) {
+          console.log('Pet deleted successfully:', response.message);
+          // Remove the corresponding pet item from the UI
+          $('[data-pet-id="' + petId + '"]').closest('.pet-item').remove();
+        },
+        error: function(xhr, status, error) {
+          console.error('Error deleting pet:', error);
+        }
+      });
+    }
 
-  .management-section {
-    margin: 30px;
-    display: flex;
-    gap: 20px;
-  }
+    // trash icon
+    $(document).on('click', '.delete-pet', function() {
+      var petId = $(this).data('pet-id');
+      if (confirm('Are you sure you want to delete this pet?')) {
+        deletePet(petId);
+      }
+    });
 
-  .management-section .profile-picture-box,
-  .management-section .add-pets-box {
-    width: 150px;
-    height: 40px;
-    border-radius: 10px;
-  }
+    // add pet
+    $('#addPetForm').on('submit', function(event) {
+      event.preventDefault();
+      var form = $(this);
 
-  .grey-background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
+      $.ajax({
+        url: form.attr('action'),
+        method: form.attr('method'),
+        data: form.serialize(),
+        dataType: 'json',
+        success: function(response) {
+          console.log('Pet added successfully:', response.message);
+          $('#addpetModal').modal('hide');
+          // reload pets list after adding a new pet
+          location.reload();
+        },
+        error: function(xhr, status, error) {
+          console.error('Error adding pet:', error);
+        }
+      });
+    });
 
-  .grey-background p {
-  margin: 0;
-  text-align: center;
-}
-
-  .user-details {
-    margin: 30px;
-  }
-
-  .grey-background {
-    background-color: #606060;
-    padding: 10px;
-    border-radius: 5px;
-  }
-</style>
+    $('#addpetModal').on('hidden.bs.modal', function (e) {
+      console.log('Modal closed');
+    });
+  });
+</script>
