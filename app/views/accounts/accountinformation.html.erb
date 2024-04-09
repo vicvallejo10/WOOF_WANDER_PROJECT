@@ -1,3 +1,5 @@
+
+
 <head>
   <link href="path/to/icons8-sprite.svg" rel="stylesheet">
 </head>
@@ -22,11 +24,154 @@
     </div>
   </div>
   <div class="add-pets-box">
-    <div class="grey-background rounded-corners">
-      <p>Add Pet</p>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="<%= current_user.first_name %>">Add pet</button>
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Pet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="addPetForm" enctype="multipart/form-data">
+          <div class="form-group row">
+            <label for="pet-name" class="col-sm-4 col-form-label">Pet Name:*</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="pet-name" name="pet_name" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="birthdate" class="col-sm-4 col-form-label">Birth Date:*</label>
+            <div class="col-sm-8">
+              <input type="date" class="form-control" id="birthdate" name="birthdate" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="microchip-number" class="col-sm-4 col-form-label">Microchip No.:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="microchip-number" name="microchip_number">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="breed" class="col-sm-4 col-form-label">Breed:*</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="breed" name="breed" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Size:*</label>
+            <div class="col-sm-8">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="size" id="sizeSmall" value="Small" required>
+                <label class="form-check-label" for="sizeSmall">Small</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="size" id="sizeMedium" value="Medium">
+                <label class="form-check-label" for="sizeMedium">Medium</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="size" id="sizeLarge" value="Large">
+                <label class="form-check-label" for="sizeLarge">Large</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Sterilized:*</label>
+            <div class="col-sm-8">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sterilized" id="sterilizedYes" value="Yes" required>
+                <label class="form-check-label" for="sterilizedYes">Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sterilized" id="sterilizedNo" value="No">
+                <label class="form-check-label" for="sterilizedNo">No</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="color" class="col-sm-4 col-form-label">Color:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="color" name="color">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="vaccine-card" class="col-sm-4 col-form-label">Vaccine Card:</label>
+            <div class="col-sm-8">
+              <input type="file" class="form-control-file" id="vaccine-card" name="vaccine_card">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="pet-photo" class="col-sm-4 col-form-label">Pet Photo:</label>
+            <div class="col-sm-8">
+              <input type="file" class="form-control-file" id="pet-photo" name="pet_photo">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="addPetButton">Add Pet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<style>
+  /* Custom CSS for form styling */
+  .modal-body .form-group.row {
+    margin-bottom: 20px; /* Add bottom margin between form groups */
+  }
+
+  /* Custom CSS to align labels with text boxes */
+  .modal-body .form-group.row .col-form-label {
+    text-align: right;
+    padding-right: 15px; /* Adjust as needed for spacing between label and input */
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Update modal title with fixed text
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var modal = $(this);
+      modal.find('.modal-title').text('Add Pet');
+    });
+
+    // Handle adding a new pet when Add Pet button in modal is clicked
+    $('#addPetButton').on('click', function() {
+      var formData = new FormData($('#addPetForm')[0]);
+
+      // Perform AJAX request to add pet
+      $.ajax({
+        url: '/pets', // Replace with your API endpoint
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          console.log('Pet added successfully:', response);
+          $('#exampleModal').modal('hide'); // Close the modal
+        },
+        error: function(xhr, status, error) {
+          console.error('Error adding pet:', error);
+          console.log('Response status:', status);
+          console.log('Response text:', xhr.responseText);
+        }
+      });
+    });
+  });
+</script>
 
 <div class="user-details">
   <h3>My Profile</h3>
