@@ -90,7 +90,7 @@ place1 = {
 place2 = {
   place_name: "Le Café des Chats",
   place_description: "Cozy café where guests can enjoy drinks and snacks in the company of resident cats.",
-  place_type: "Café",
+  place_type: "Cafe",
   address: "16 Rue Michel le Comte, 75003 Paris, France",
   city: "Paris",
   country: "France",

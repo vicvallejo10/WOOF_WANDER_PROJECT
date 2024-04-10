@@ -122,3 +122,25 @@
   margin-bottom: 20px; /* Adjusted from 100px */
   font-size: 16px;
 }
+
+.field {
+  margin-bottom: 20px;
+
+  .rating {
+    .star {
+      display: none;
+
+      &:checked + .star-label:before {
+        content: "\2605";
+        color: #ffc107;
+      }
+    }
+
+    .star-label {
+      cursor: pointer;
+      font-size: 30px;
+      color: #ccc;
+    }
+  }
+}
+
