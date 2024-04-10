@@ -1,6 +1,6 @@
-/* General styles */
-.container {
-  max-width: 800px;
+/* Form container */
+.form-container {
+  max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -8,139 +8,43 @@
   background-color: #f9f9f9;
 }
 
-.header {
-  margin-bottom: 20px;
-}
-
-.images {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.images img {
-  width: 48%;
-  border-radius: 8px;
-}
-
-.details {
-  margin-bottom: 20px;
-}
-
-.tags {
-  margin-bottom: 20px;
-}
-
-.tag {
-  display: inline-block;
-  margin-right: 10px;
-  padding: 6px 12px;
-  background-color: #000911;
-  color: #fff;
-  border-radius: 4px;
-}
-
-.description {
-  margin-bottom: 20px;
-  font-size: 16px;
-  color: #555;
-}
-
-.reviews {
-  margin-bottom: 20px;
-}
-
-/* Card styles */
-.card {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.card h2 {
-  font-size: 20px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 16px;
-  color: #555;
-}
-
-/* Form styles */
-.form {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.form label {
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.form input[type="text"],
-.form textarea,
-.form input[type="number"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-.form input[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-/* Additional styles */
-#review_title {
-  margin-bottom: 20px;
-}
-
-.some_class {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 20px; /* Adjusted from 100px */
-  font-size: 16px;
-}
-
+/* Form fields */
 .field {
   margin-bottom: 20px;
-
-  .rating {
-    .star {
-      display: none;
-
-      &:checked + .star-label:before {
-        content: "\2605";
-        color: #ffc107;
-      }
-    }
-
-    .star-label {
-      cursor: pointer;
-      font-size: 30px;
-      color: #ccc;
-    }
-  }
 }
 
+.field label {
+  font-weight: bold;
+}
+
+.field input[type="text"],
+.field textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.field textarea {
+  height: 100px;
+}
+
+/* Rating stars */
+.rating-group {
+  display: inline-flex;
+}
+
+.rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 1rem;
+}
+
+.rating__icon--star {
+  color: gray; /* Default star color */
+}
+
+/* Make hovered input's previous siblings orange on hover */
+.rating__input:hover ~ .rating__label .rating__icon--star {
+  color: orange;
+}

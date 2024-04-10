@@ -20,14 +20,23 @@ class PlacesController < ApplicationController
     # @reviews = @place.reviews.order(created_at: :description :title)
   end
 
-  def search(params)
-    # place_type = params[:place_type]
+  # def search(params)
+  #   # place_type = params[:place_type]
+  #   size = params[:size]
+  #   # special_characteristics = params[:special_characteristics]
+  #   # ratings = params[:ratings]
+  #   # proximity = params[:proximity]
+  #   filtered_places = Place.filter(size) # ratings, proximity)
+  #   # You can return filtered_places directly or process it further as needed
+  #   render 'search'
+  # end
+
+  def search
+    # Fetch parameters from params hash
     size = params[:size]
-    # special_characteristics = params[:special_characteristics]
-    # ratings = params[:ratings]
-    # proximity = params[:proximity]
-    filtered_places = Place.filter(size) # ratings, proximity)
-    # You can return filtered_places directly or process it further as needed
+    # Call the filter method to get filtered places
+    @filtered_places = Place.filter(size) # You can pass more parameters as needed
+    # Render the search view
     render 'search'
   end
 

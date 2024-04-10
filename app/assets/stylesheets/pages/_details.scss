@@ -1,53 +1,91 @@
 .place-details {
-  padding: 20px;
-  background-color: #f9f9f9;
-}
+  .header {
+    margin-bottom: 20px;
 
-.header {
-  margin-bottom: 20px;
-}
+    .buttons {
+      display: flex;
+      justify-content: inline-block;
+      align-items: center;
 
-.images {
-  display: flex;
-  flex-wrap: wrap;
-}
+      .btn {
+        padding: 10px 20px;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
 
-.images img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
+      .take-me-there {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        margin-right: 10px;
+        padding: 6px 12px;
+      }
 
-.buttons {
-  margin-top: 10px;
-}
+      .back {
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+        margin-right: 10px;
+        padding: 6px 12px;
+      }
+    }
+  }
 
-.details {
-  margin-top: 20px;
-}
+  .details {
+    .tags {
+      margin-bottom: 20px;
 
-.tags {
-  margin-bottom: 10px;
-}
+      .tag {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 6px 12px;
+        background-color: #000911;
+        color: #fff;
+        border-radius: 4px;
+      }
+    }
 
-.tag {
-  display: inline-block;
-  margin-right: 10px;
-  background-color: #f0f0f0;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
+    .reviews {
+      .review-card {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
 
-.description {
-  margin-bottom: 20px;
-}
+        .avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          margin-right: 20px;
+        }
 
-.reviews .card {
-  margin-bottom: 10px;
-}
+        .review-details {
+          h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
 
-.review-form {
-  margin-top: 20px;
+          p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+          }
+
+          strong {
+            font-weight: bold;
+          }
+        }
+      }
+
+      p {
+        font-size: 16px;
+        color: #555;
+      }
+    }
+  }
 }
