@@ -2,6 +2,7 @@ class PlacesController < ApplicationController
   def new
     @place = Place.new
   end
+
   def create
     @place = Place.new(place_params)
     @place.user = current_user
@@ -18,13 +19,14 @@ class PlacesController < ApplicationController
     @total_reviews_count = @place.reviews.count
     # @reviews = @place.reviews.order(created_at: :description :title)
   end
+
   def search(params)
-    #place_type = params[:place_type]
+    # place_type = params[:place_type]
     size = params[:size]
-    #special_characteristics = params[:special_characteristics]
-    #ratings = params[:ratings]
-   # proximity = params[:proximity]
-    filtered_places = Place.filter(size) #ratings, proximity)
+    # special_characteristics = params[:special_characteristics]
+    # ratings = params[:ratings]
+    # proximity = params[:proximity]
+    filtered_places = Place.filter(size) # ratings, proximity)
     # You can return filtered_places directly or process it further as needed
     render 'search'
   end
@@ -47,6 +49,14 @@ class PlacesController < ApplicationController
       @markers = [] # Handle case where no places have coordinates
     end
   end
+
+  # def navigate
+  #   @place = Place.find(params[:id])
+  #   @markers = "#{@place.latitude};#{@place.longitude}"
+  #   url = "https://api.mapbox.com/directions/v5/mapbox/walking/#{@markers}&access_token=#{ENV['MAPBOX_API_KEY']}"
+  #   puts "calling directions API"
+  #   puts url
+  # end
 
   private
 
