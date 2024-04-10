@@ -1,39 +1,28 @@
-<%# Display place details %>
-<div class="container">
+<div class="place-details">
   <div class="header">
     <h1><%= @place.place_name %></h1>
-    <!-- Images -->
     <div class="images">
-      <!-- Add your images here -->
-      <img src="image1.jpg" alt="Image 1">
-      <img src="image2.jpg" alt="Image 2">
-      <!-- Add more images if needed -->
+      <%# <% @place.images.each do |image| %>
+        <%# <%= image_tag image.url, alt: "Image" %>
+      <%# <% end %>
     </div>
-    <!-- Take me there button -->
-    <button class="btn take-me-there">Take me there</button>
-    <!-- Back button -->
-    <button class="btn back">Back</button>
+    <div class="buttons">
+      <button class="btn btn-primary take-me-there">Take me there</button>
+      <%= link_to "Back", places_path, class: "btn btn-secondary back" %>
+    </div>
   </div>
 
   <div class="details">
-    <!-- Rating and category tags -->
     <div class="tags">
       <span class="tag">Rating: <%= @place.average_rating %></span>
       <span class="tag">Category: <%= @place.place_type %></span>
-      <!-- Add more tags as needed -->
     </div>
-    <!-- Description -->
+    <h3> Decription <h3>
     <p class="description">
       <%= @place.place_description %>
     </p>
-    <!-- Review cards -->
     <div class="reviews">
-
-      <div class="card">
-        <h2>Review Title</h2>
-        <p>Review content goes here...</p>
-      </div>
-
+    <h3> Reviews <h3>
       <% if @place.reviews.any? %>
         <% @place.reviews.each do |review| %>
           <div class="card">
@@ -44,10 +33,7 @@
       <% else %>
         <p>No reviews available yet.</p>
       <% end %>
-
     </div>
-
-    <!-- Add Review section -->
     <% unless current_user.has_reviewed?(@place) %>
       <%= render 'reviews/form', review: @review %>
     <% end %>

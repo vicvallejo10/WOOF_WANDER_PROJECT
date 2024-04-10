@@ -1,52 +1,43 @@
-.container {
-  max-width: 800px;
-  margin: 0 auto;
+.place-details {
   padding: 20px;
+  background-color: #f9f9f9;
 }
 
 .header {
-  text-align: center;
   margin-bottom: 20px;
 }
 
 .images {
   display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .images img {
-  width: 200px;
-  height: auto;
-  margin: 0 10px;
-}
-
-.btn {
-  padding: 10px 20px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
   margin-right: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  margin-bottom: 10px;
 }
 
-.take-me-there {
-  background-color: #007bff;
-  color: #fff;
+.buttons {
+  margin-top: 10px;
 }
 
-.back {
-  background-color: #ccc;
+.details {
+  margin-top: 20px;
 }
 
 .tags {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .tag {
+  display: inline-block;
+  margin-right: 10px;
   background-color: #f0f0f0;
   padding: 5px 10px;
-  margin-right: 10px;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .description {
@@ -54,11 +45,9 @@
 }
 
 .reviews .card {
-  background-color: #f0f0f0;
-  padding: 10px;
   margin-bottom: 10px;
-  border-radius: 4px;
 }
-// h1 {
-//   color:aqua;
-// }
+
+.review-form {
+  margin-top: 20px;
+}

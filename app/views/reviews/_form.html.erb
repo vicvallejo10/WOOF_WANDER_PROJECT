@@ -1,11 +1,10 @@
-<%= form_with(model: review, url: place_reviews_path(@place)) do |form| %>
-  <% if review.errors.any? %>
+<%= form_with(model: [@place, @review]) do |form| %>
+  <% if @review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
       <ul>
-        <% review.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <% @review.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -13,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title  %>
+    <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
@@ -23,12 +22,16 @@
   </div>
 
   <div class="field">
-    <%= form.label :rating %>
-    <%= form.number_field :rating, min: 1, max: 5 %>
+    <%= form.label :rating, "Rating" %>
+    <div class="rating">
+      <% (1..5).each do |i| %>
+        <%= radio_button_tag "review[rating]", i, i == @review.rating, class: "star" %>
+        <label for="review_rating_<%= i %>" class="star-label"><%= i %></label>
+      <% end %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Submit Review' %>
+    <%= form.submit "Submit Review" %>
   </div>
-
 <% end %>

@@ -86,7 +86,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_10_072053) do
     t.boolean "tag_disposalstation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "property_type"
   end
 
   create_table "reviews", force: :cascade do |t|
