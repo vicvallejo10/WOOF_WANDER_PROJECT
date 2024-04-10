@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   # Route for searching places, handled by the search action of the places controller, with an alias 'search'
   # get '/places/search', to: 'places#search', as: 'search'
 
+  # Route for navigation instructions to a place, handled by the navigate action of the places controller, with an alias 'navigate'
+  get '/places/:id/navigate', to: 'places#navigate', as: 'navigate'
+
   # Route for revealing health status. Returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
