@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root to: "pages#home" # Define your root route once
   get '/explore', to: 'pages#explore'
   get '/accountinformation', to: 'accounts#accountinformation'
+  get '/places/search', to: 'places#search', as: 'search'
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -20,11 +20,9 @@ Rails.application.routes.draw do
   end
 
   # Route for the filter options page
-  #get '/filter_options', to: 'filter_options#index', as: 'filter_options'
+  #  get '/filter_options', to: 'filter_options#index', as: 'filter_options'
 
-# This is Feiyue's Code
-  # resources :users, only: [:show, :edit, :update] do
-  # end
+  # This is Feiyue's Code
   resources :users, only: [] do
     member do
       get 'accounts', to: 'accounts#accountinformation', as: 'accounts'
@@ -48,4 +46,5 @@ Rails.application.routes.draw do
   #end
 
   get '/places/search', to: 'places#search', as: 'search'
+
 end
