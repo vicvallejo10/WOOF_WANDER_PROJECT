@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Pet Details</h1>
+  <table>
+    <tr>
+      <th>ID</th>
+      <td><%= @pet.id %></td>
+    </tr>
+    <tr>
+      <th>Pet Name</th>
+      <td><%= @pet.pet_name %></td>
+    </tr>
+    <tr>
+      <th>Birthdate</th>
+      <td><%= @pet.birthdate %></td>
+    </tr>
+    <tr>
+      <th>Microchip Number</th>
+      <td><%= @pet.microchip_number %></td>
+    </tr>
+    <tr>
+      <th>Breed</th>
+      <td><%= @pet.breed %></td>
+    </tr>
+    <tr>
+      <th>Size</th>
+      <td><%= @pet.size %></td>
+    </tr>
+    <tr>
+      <th>Color</th>
+      <td><%= @pet.color %></td>
+    </tr>
+    <tr>
+      <th>Sterilized</th>
+      <td><%= @pet.sterilized ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+      <th>Vaccine Card</th>
+      <td><%= @pet.vaccine_card %></td>
+    </tr>
+    <tr>
+      <th>User ID</th>
+      <td><%= @pet.user_id %></td>
+    </tr>
+    <tr>
+      <th>Created At</th>
+      <td><%= @pet.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated At</th>
+      <td><%= @pet.updated_at %></td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

@@ -15,14 +15,14 @@ Rails.application.routes.draw do
   get '/accountinformation', to: 'accounts#accountinformation'
 
   # Route for searching places, handled by the search action of the places controller, with an alias 'search'
-  get '/places/search', to: 'places#search', as: 'search'
+  # get '/places/search', to: 'places#search', as: 'search'
 
   # Route for revealing health status. Returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :pets, only: [:index, :show, :new, :create, :destroy]  # Example route for pets
-
+  resources :pets, only: [:index, :show, :new, :create, :destroy]
+  get '/pets/:id', to: 'pets#show', as: 'specific_pet'
 
   # Nested route for reviews within places, allowing only new and create actions
   # Nested resources for places and reviews
@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :accounts do
     member do
       get 'pets', to: 'accounts#accountinformation', as: 'account_pets'
+      delete "pets/:id", to: "pets#destroy"
     end
   end
 end
