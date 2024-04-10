@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+  resources :pets, only: [:index, :show, :new, :create]  # Example route for pets
+
   # Defines the root path route ("/")
   # root "posts#index"
   resources :places do
@@ -33,4 +35,16 @@ Rails.application.routes.draw do
       get 'pets', to: 'accounts#accountinformation', as: 'account_pets'
     end
   end
+
+  #get '/places/search', to: 'places#search', as: 'search'
+
+  # This is the original Code
+  #root 'accounts#show'
+  #resources :users, only: [:show, :edit, :update] do
+    #resources :pets, except: [:index, :show]
+    #resources :place, only: [:index, :destroy]
+  #end
+
+  get '/places/search', to: 'places#search', as: 'search'
+
 end
