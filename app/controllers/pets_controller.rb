@@ -33,10 +33,16 @@ class PetsController < ApplicationController
       render :edit
     end
   end
-
-
+  
   def edit
     # Your edit action logic here
+  end
+
+  def age
+    now = Time.now.utc.to_date
+    birthdate = self.birthdate
+    age_in_years = now.year - birthdate.year - ((now.month > birthdate.month || (now.month == birthdate.month && now.day >= birthdate.day)) ? 0 : 1)
+    age_in_years
   end
 
   private
