@@ -19,9 +19,6 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
-  # Route for the filter options page
-  #  get '/filter_options', to: 'filter_options#index', as: 'filter_options'
-
   # This is Feiyue's Code
   resources :users, only: [] do
     member do
@@ -44,7 +41,5 @@ Rails.application.routes.draw do
     #resources :pets, except: [:index, :show]
     #resources :place, only: [:index, :destroy]
   #end
-
-  get '/places/search', to: 'places#search', as: 'search'
 
 end
