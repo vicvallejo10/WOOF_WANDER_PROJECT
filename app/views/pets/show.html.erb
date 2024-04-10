@@ -4,50 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pet Details</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fa;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
-  </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Pet Details</h1>
+  <h1><%= @pet.pet_name %></h1>
+  <div class="button-container">
+   <button type="button" class="btn btn-primary">Change Picture</button>
+</div>
+</div>
+
   <table>
-    <tr>
-      <th>ID</th>
-      <td><%= @pet.id %></td>
-    </tr>
-    <tr>
-      <th>Pet Name</th>
-      <td><%= @pet.pet_name %></td>
-    </tr>
-    <tr>
       <th>Birthdate</th>
       <td><%= @pet.birthdate %></td>
     </tr>
@@ -76,10 +43,6 @@
       <td><%= @pet.vaccine_card %></td>
     </tr>
     <tr>
-      <th>User ID</th>
-      <td><%= @pet.user_id %></td>
-    </tr>
-    <tr>
       <th>Created At</th>
       <td><%= @pet.created_at %></td>
     </tr>
@@ -88,7 +51,12 @@
       <td><%= @pet.updated_at %></td>
     </tr>
   </table>
-</div>
+
+   <div class="icons">
+    <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Edit" title="Edit" />
+    <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Delete" title="Delete" />
+      </div>
+     </div >
 
 </body>
 </html>
