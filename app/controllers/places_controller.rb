@@ -53,7 +53,7 @@ class PlacesController < ApplicationController
   # Reminder to check if this is needed...VMT (don't erase yet)
   def navigate
     @place = Place.find(params[:id])
-    @markers = "#{@place.latitude};#{@place.longitude}"
+    @markers = [@place.longitude, @place.latitude]
     puts @markers
   end
 
