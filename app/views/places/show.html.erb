@@ -14,20 +14,25 @@
 
   <div class="details">
     <div class="tags">
-      <span class="tag">Rating: <%= @place.average_rating %></span>
+      <span class="tag">Rating: <%= @place.average_rating.round(1) %></span>
       <span class="tag">Category: <%= @place.place_type %></span>
     </div>
-    <h3> Decription <h3>
+    <h3>Description</h3>
     <p class="description">
       <%= @place.place_description %>
     </p>
     <div class="reviews">
-    <h3> Reviews <h3>
+      <h3>Reviews</h3>
       <% if @place.reviews.any? %>
         <% @place.reviews.each do |review| %>
-          <div class="card">
-            <h2><%= review.title %></h2>
-            <p><%= review.description %></p>
+          <div class="review-card">
+            <%# Review Avatar -->
+            <%= image_tag review.user.avatar.url, alt: "Avatar", class: "avatar" %>
+            <div class="review-details">
+              <h2><%= review.title %></h2>
+              <p><%= review.description %></p>
+              <p><strong>Reviewer:</strong> <%= review.user.first_name %></p>
+            </div>
           </div>
         <% end %>
       <% else %>
