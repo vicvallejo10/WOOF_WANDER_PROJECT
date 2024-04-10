@@ -91,11 +91,6 @@
       align-items: center;
     }
 
-    .pet-label {
-      font-weight: bold;
-      margin-right: 10px;
-    }
-
     .pet-icons {
       display: flex;
       align-items: center;
@@ -149,7 +144,6 @@ input[type="radio"]:checked + .radio-label {
     <% if @user.avatar.attached? %>
       <%= cl_image_tag @user.avatar.key %>
     <% end %>
-
     </div>
 
   </div>
@@ -254,13 +248,20 @@ input[type="radio"]:checked + .radio-label {
     <% @pets.each do |pet| %>
       <div class="pet-item">
         <div class="pet-details">
-          <span class="pet-label">Pet Name:</span>
-          <%= pet.pet_name %> &nbsp;&nbsp; Breed: <%= pet.breed %>
+          <% if pet.photos.attached? %>
+            <div class="pet-avatar-container">
+              <%= cl_image_tag pet.photos.key, width: 50, height: 50, class: "pet-photos", alt: pet.pet_name %>
+            </div>
+          <% else %>
+            <div class="pet-avatar-container">
+              <%= link_to image_tag("https://example.com/placeholder_image.jpg", width: 50, height: 50, class: "pet-placeholder"), "#" %>
+            </div>
+          <% end %>
+          <%= pet.pet_name %>
         </div>
         <div class="pet-icons">
-          <img src="https://img.icons8.com/material-outlined/24/visible--v1.png" alt="visible--v1" class="view-pet" data-pet-id="<%= pet.id %>"/>
-          <img src="https://img.icons8.com/material-outlined/24/pencil--v1.png" alt="pencil--v1"/>
-          <%= link_to image_tag("https://img.icons8.com/material-outlined/24/trash--v1.png", alt: "trash--v1"), pet_path(pet), method: :delete, data: { confirm: "Are you sure you want to delete #{pet.pet_name}?" }, class: "delete-pet" %>
+        <%= link_to image_tag("https://img.icons8.com/material-outlined/24/visible--v1.png", alt: "visible--v1"), pet_path(pet) %>
+          <%= link_to image_tag("https://img.icons8.com/material-outlined/24/trash--v1.png", alt: "trash--v1"), pet_path(pet), data: { turbo_method: :delete, confirm: "Are you sure you want to delete #{pet.pet_name}?" }, class: "delete-pet" %>
         </div>
       </div>
     <% end %>
@@ -270,59 +271,12 @@ input[type="radio"]:checked + .radio-label {
 </div>
 
 
-<div class="modal fade" id="petDetailsModal" tabindex="-1" role="dialog" aria-labelledby="petDetailsModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="petDetailsModalLabel">Pet Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="petDetailsContent">
-        <div class="pet-details-container">
-          <!-- <img src="" alt="Pet Picture" id="petPicture" style="max-width: 100%; height: auto;"> -->
-          <p><strong>Pet Name:</strong> <span id="petName"></span></p>
-          <p><strong>Breed:</strong> <span id="petBreed"></span></p>
-          <p><strong>Size:</strong> <span id="petSize"></span></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<!-- bootstrap -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
 <script>
   $(document).ready(function() {
-  $(document).on('click', '.view-pet', function() {
-    var petId = $(this).data('pet-id');
-
-    $.ajax({
-      url: '/pets/' + petId,
-      method: 'GET',
-      dataType: 'json',
-      success: function(response) {
-        $('#petName').text(response.pet_name);
-        $('#petBreed').text(response.breed);
-        $('#petSize').text(response.size);
-
-        // Set the pet picture available
-        //if (response.picture_url) {
-          //$('#petPicture').attr('src', response.picture_url);
-        //} else {
-          // Set a default image if no picture is available
-          //$('#petPicture').attr('src', 'path/to/default/pet/image.jpg');}
-
-        // Show the modal
-        $('#petDetailsModal').modal('show');
-      },
-      error: function(xhr, status, error) {
-        console.error('Error fetching pet details:', error);
-      }
-    });
-  });
     // add pet
     $('#addPetForm').on('submit', function(event) {
       event.preventDefault();

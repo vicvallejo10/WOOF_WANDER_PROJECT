@@ -21,8 +21,13 @@ class PetsController < ApplicationController
 
   def destroy
     @pet = Pet.find(params[:id])
-    @pet.destroy
-    redirect_to pets_url, notice: "Pet #{params[:id]} was successfully deleted."
+    pet_name = @pet.pet_name
+
+    if @pet.destroy
+      redirect_to accountinformation_path, notice: "Pet '#{pet_name}' was successfully deleted."
+    else
+      redirect_to accountinformation_path, alert: "Delete attempt unsuccessful"
+    end
   end
 
   def update
