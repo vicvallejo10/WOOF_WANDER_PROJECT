@@ -7,4 +7,6 @@ class Pet < ApplicationRecord
 
   # Validation for pet size
   validates :size, inclusion: { in: SIZES, allow_blank: true }
+  validates :pet_name, :birthdate, :microchip_number, :breed, :size, :color, :sterilized, presence: true
+
 end
