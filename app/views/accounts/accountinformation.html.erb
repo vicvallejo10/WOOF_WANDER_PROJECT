@@ -5,7 +5,11 @@
 <div class="header-section text-center">
   <div class="header-left">
     <div class="round-image-container">
-      <%# add user profile pictrue %>
+      <%# add user profile picture %>
+    <% if @user.avatar.attached? %>
+      <%= cl_image_tag @user.avatar.key %>
+    <% end %>
+
     </div>
   </div>
   <div class="header-right">
