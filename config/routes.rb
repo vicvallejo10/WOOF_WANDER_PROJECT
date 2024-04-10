@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Example route for pets, allowing only index, show, new, and create actions
-  resources :pets, only: [:index, :show, :new, :create]
+  resources :pets, only: [:index, :show, :new, :create, :destroy]  # Example route for pets
+
 
   # Nested route for reviews within places, allowing only new and create actions
   # Nested resources for places and reviews

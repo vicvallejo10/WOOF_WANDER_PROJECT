@@ -1,4 +1,5 @@
 class PetsController < ApplicationController
+  before_action :set_pet, only: [:show, :edit, :update, :destroy]
   def new
     @pet = Pet.new
   end
@@ -14,16 +15,36 @@ class PetsController < ApplicationController
     end
   end
 
-  def index
-    @pets = current_user.pets # Assuming pets are associated with the current user
-    respond_to do |format|
-      format.html { render partial: 'pets_list', locals: { pets: @pets } } # Respond with HTML (using a partial)
-      format.json { render json: @pets } # Respond with JSON (optional, if needed)
+  def show
+    @pet = Pet.find(params[:id])
+  end
+
+  def destroy
+    @pet = Pet.find(params[:id])
+    @pet.destroy
+    redirect_to pets_url, notice: "Pet #{params[:id]} was successfully deleted."
+  end
+
+  def update
+    # Your update action logic here
+    if @pet.update(pet_params)
+      redirect_to @pet, notice: 'Pet was successfully updated.'
+    else
+      render :edit
     end
   end
+
+
+  def edit
+    # Your edit action logic here
+  end
+
   private
 
   def pet_params
     params.require(:pet).permit(:pet_name, :birthdate, :microchip_number, :breed, :size, :color, :sterilized) #:vaccine_card, :pet_photo)
+  end
+  def set_pet
+    @pet = Pet.find(params[:id])
   end
 end
