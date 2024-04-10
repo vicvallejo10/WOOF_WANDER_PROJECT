@@ -50,13 +50,12 @@ class PlacesController < ApplicationController
     end
   end
 
-  # def navigate
-  #   @place = Place.find(params[:id])
-  #   @markers = "#{@place.latitude};#{@place.longitude}"
-  #   url = "https://api.mapbox.com/directions/v5/mapbox/walking/#{@markers}&access_token=#{ENV['MAPBOX_API_KEY']}"
-  #   puts "calling directions API"
-  #   puts url
-  # end
+  # Reminder to check if this is needed...VMT (don't erase yet)
+  def navigate
+    @place = Place.find(params[:id])
+    @markers = "#{@place.latitude};#{@place.longitude}"
+    puts @markers
+  end
 
   private
 
