@@ -66,7 +66,7 @@
     }
 
     .user-details,
-    .pets-details {
+    .pet-list {
       margin: 30px;
       padding: 20px;
       background-color: #ffffff;
@@ -145,7 +145,6 @@ input[type="radio"]:checked + .radio-label {
       <%= cl_image_tag @user.avatar.key %>
     <% end %>
     </div>
-
   </div>
   <div class="user-profile-text">
     <h2>Welcome <%= @user.first_name %>!</h2>
@@ -158,7 +157,7 @@ input[type="radio"]:checked + .radio-label {
 </div>
 </div>
 
-<!-- Modal -->
+<!-- Add Pet Modal -->
 <div class="modal fade" id="addpetModal" tabindex="-1" role="dialog" aria-labelledby="addpetModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -235,6 +234,7 @@ input[type="radio"]:checked + .radio-label {
   </div>
 </div>
 
+<!-- user info -->
 <div class="user-details">
   <h3>My Profile</h3>
   <p>First Name: <%= current_user.first_name %></p>
@@ -242,7 +242,8 @@ input[type="radio"]:checked + .radio-label {
   <p>Email: <%= current_user.email %></p>
 </div>
 
-<div class="pets-details">
+<!-- pet list -->
+<div class="pet-list">
   <h3>My Pets</h3>
   <% if @pets.any? %>
     <% @pets.each do |pet| %>
