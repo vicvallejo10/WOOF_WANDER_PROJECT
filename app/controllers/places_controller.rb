@@ -59,7 +59,7 @@ class PlacesController < ApplicationController
     end
   end
 
-  # Reminder to check if this is needed...VMT (don't erase yet)
+  # Method to pass the destination coordinates to the stimulus controller -> navigation_map
   def navigate
     @place = Place.find(params[:id])
     @markers = [@place.longitude, @place.latitude]
