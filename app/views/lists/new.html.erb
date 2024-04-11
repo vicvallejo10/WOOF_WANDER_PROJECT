@@ -1,0 +1,19 @@
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://chloejohnston.com/wp-content/uploads/2015/01/paris-cin%C3%A9ma1.jpg);">
+  <div class="container">
+    <h1><strong>Watchlist</strong></h1>
+    <p>Find all your lists here</p>
+    <a class="btn btn-flat" href="#">Apply now</a>
+</div>
+</div>
+
+<div class="container">
+  <h1>All lists</h1>
+      <div class="cards">
+        <% @lists.each do |l| %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://i.pinimg.com/550x/45/b7/f8/45b7f88599dc2080fb9ce1928679ed92.jpg)">
+        <%= l.name %>
+        </div>
+    <% end %>
+</div>
+</div>

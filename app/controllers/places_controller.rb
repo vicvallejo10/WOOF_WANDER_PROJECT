@@ -20,17 +20,6 @@ class PlacesController < ApplicationController
     # @reviews = @place.reviews.order(created_at: :description :title)
   end
 
-  # def search(params)
-  #   # place_type = params[:place_type]
-  #   size = params[:size]
-  #   # special_characteristics = params[:special_characteristics]
-  #   # ratings = params[:ratings]
-  #   # proximity = params[:proximity]
-  #   filtered_places = Place.filter(size) # ratings, proximity)
-  #   # You can return filtered_places directly or process it further as needed
-  #   render 'search'
-  # end
-
   def search
     # Fetch parameters from params hash
     size = params[:size]
@@ -100,5 +89,13 @@ class PlacesController < ApplicationController
     places = places.where(tag_indoor: true) if special_characteristics.include?('Indoor')
 
     places
+  end
+
+  def save_to_list
+    place = Place.find(params[:place_id])
+    list = current_user.lists.find(params[:list_id])
+    list.places << place
+
+    redirect_to place_path(place), notice: "Place saved to list successfully!"
   end
 end

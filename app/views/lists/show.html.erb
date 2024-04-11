@@ -1,0 +1,19 @@
+<h1><%= @list.name %></h1>
+
+<ul>
+  <% @list.places.each do |place| %>
+    <li><%= place.name %></li>
+  <% end %>
+</ul>
+
+
+<div class="container">
+<h1>Showpage</h1>
+User ruby to show what we want
+
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.squarespace-cdn.com/content/v1/613399020fcb4430250df526/ccc6339f-7a3e-4884-97c9-1cd2adf91cd8/seats.jpg)">
+  <%= @list_item.name %>
+</div>
+<a class="btn btn-success" href="#">Go to Home</a>
+<a class="btn btn-info" href="#">Add a movie</a>
+</div>
