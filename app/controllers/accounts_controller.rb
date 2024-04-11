@@ -19,7 +19,6 @@ class AccountsController < ApplicationController
 
   def update_avatar
     @user = User.find(current_user.id)
-    puts @user, "User------------------"
     @user.update(avatar_params)
     redirect_to accountinformation_path
   end

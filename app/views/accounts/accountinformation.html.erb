@@ -130,15 +130,13 @@
     <% @pets.each do |pet| %>
       <div class="pet-item">
         <div class="pet-details">
-          <% if pet.photos.attached? %>
-            <div class="pet-avatar-container">
-              <%= cl_image_tag pet.photos.key, width: 50, height: 50, class: "pet-photos", alt: pet.pet_name %>
+            <div class ="pet-photo">
+              <% if pet.photo.attached? %>
+                  <%= cl_image_tag pet.photo.key, alt: pet.pet_name %>
+              <% else %>
+                  <%= image_tag "https://res.cloudinary.com/dag1qh58z/image/upload/v1712857676/5340777_a5bytl.jpg" %>
+              <% end %>
             </div>
-          <% else %>
-            <div class="pet-avatar-container">
-              <%= link_to image_tag("https://example.com/placeholder_image.jpg", width: 50, height: 50, class: "pet-placeholder"), "#" %>
-            </div>
-          <% end %>
           <%= pet.pet_name %>
         </div>
         <div class="pet-icons">
