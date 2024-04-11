@@ -2,11 +2,10 @@
 <%# Search bar %>
 <div class="container">
   <%# Hero %>
-  <div class="hero text-center"> <!-- Added text-center class here -->
-    <h1>Explore</h1>
+  <div class="hero text-center">
   </div>
   <div class="row justify-content-center">
-    <div class="col-sm-4 my-2 text-center"> <!-- Added text-center class here -->
+    <div class="col-sm-4 my-2 text-center">
       <%= form_with url: places_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
               params[:query],
@@ -16,7 +15,7 @@
         <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
       <% end %>
     </div>
-    <div class="col-sm-4 my-2 text-center"> <!-- Added text-center class here -->
+    <div class="col-sm-4 my-2 text-center">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
         Filters
       </button>
@@ -116,7 +115,7 @@
           <% @places.each do |place| %>
             <!-- Use link_to helper to create a hyperlink -->
             <div class="card-product">
-              <img src="https://picsum.photos/20">
+              <img src="https://picsum.photos/seed/picsum/200/300">
               <div class="card-product-infos">
                 <h4><%= link_to place.place_name, place_path(place) %></h4>
                 <p><%= place.place_description %></p>
@@ -141,8 +140,6 @@
     });
   });
 </script>
-
-
 
 
 <!-- JavaScript for Modal Actions -->
