@@ -35,6 +35,16 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+
+  # Nested routes for lists belonging to a user
+  resources :users do
+    resources :lists
+  end
+
+  # Alternatively, you can define non-nested routes for lists
+  # resources :lists
+  end
+
   # Additional route for user accounts
   # Route for displaying account information for a specific user
   resources :users do
