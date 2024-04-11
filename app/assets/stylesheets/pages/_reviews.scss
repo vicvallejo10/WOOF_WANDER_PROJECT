@@ -41,10 +41,10 @@
 }
 
 .rating__icon--star {
-  color: gray; /* Default star color */
+  color: rgb(226, 14, 14); /* Default star color */
 }
 
 /* Make hovered input's previous siblings orange on hover */
 .rating__input:hover ~ .rating__label .rating__icon--star {
-  color: orange;
+  color: rgb(145, 143, 140);
 }

@@ -1,12 +1,12 @@
 
 <%# Search bar %>
 <div class="container">
-<%# Hero %>
-<div class="hero">
-  <h1>Explore</h1>
-</div>
-  <div class="row justify-content-start">
-    <div class="col-sm-6 my-2">
+  <%# Hero %>
+  <div class="hero text-center"> <!-- Added text-center class here -->
+    <h1>Explore</h1>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-sm-4 my-2 text-center"> <!-- Added text-center class here -->
       <%= form_with url: places_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
               params[:query],
@@ -16,12 +16,15 @@
         <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
       <% end %>
     </div>
-    <div class="col-sm-6 my-2">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
-  Filters </button>
-     </div>
+    <div class="col-sm-4 my-2 text-center"> <!-- Added text-center class here -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
+        Filters
+      </button>
+    </div>
   </div>
 </div>
+
+
 
 <!-- Modal Charm 5-->
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
@@ -112,8 +115,15 @@
         <% if @places.any? %>
           <% @places.each do |place| %>
             <!-- Use link_to helper to create a hyperlink -->
-            <h4><%= link_to place.place_name, place_path(place) %></h4>
-            <p><%= place.place_description %></p>
+            <div class="card-product">
+              <img src="https://picsum.photos/20">
+              <div class="card-product-infos">
+                <h4><%= link_to place.place_name, place_path(place) %></h4>
+                <p><%= place.place_description %></p>
+                <p>Rating: <%= place.average_rating %></p> <!-- Average rating -->
+                <i class="heart-icon fa fa-heart"></i> <!-- Heart icon -->
+              </div>
+            </div>
           <% end %>
         <% else %>
           <em>Sorry, no places found.</em>
@@ -122,6 +132,17 @@
     </div>
   </div>
 </div>
+
+<!-- JavaScript for heart icon functionality -->
+<script>
+  document.querySelectorAll('.heart-icon').forEach(function(icon) {
+    icon.addEventListener('click', function() {
+      icon.classList.toggle('active'); // Toggle active class on click
+    });
+  });
+</script>
+
+
 
 
 <!-- JavaScript for Modal Actions -->
