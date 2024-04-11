@@ -1,1 +1,9 @@
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.button-container .btn {
+  margin: 0 10px; /* Adjust the value as needed */
+}
