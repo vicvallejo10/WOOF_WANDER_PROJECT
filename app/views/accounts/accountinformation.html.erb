@@ -112,9 +112,11 @@
   display: inline-block;
   margin-right: 15px;
 }
+
 input[type="radio"] {
   display: none;
 }
+
 .radio-label {
   display: inline-block;
   cursor: pointer;
@@ -125,6 +127,7 @@ input[type="radio"] {
   font-weight: light;
   margin-right: 10px;
 }
+
 input[type="radio"]:checked + .radio-label {
   background-color: #007bff;
   color: #fff;
@@ -139,10 +142,12 @@ input[type="radio"]:checked + .radio-label {
 
 <div class="header-section text-center">
   <div class="header-left">
-    <div class="round-image-container">
+    <div class="image-container">
       <%# add user profile picture %>
     <% if @user.avatar.attached? %>
       <%= cl_image_tag @user.avatar.key %>
+    <% else %>
+      <%= image_tag "https://img.freepik.com/free-vector/man-profile-account-picture_24908-81754.jpg?t=st=1712822958~exp=1712826558~hmac=c9781d106a7ee2a5373def5c8f206106b5741ffcdd0c659d54f29a2050dca332&w=1060", class: "avatar" %>
     <% end %>
     </div>
   </div>
