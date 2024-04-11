@@ -1,13 +1,16 @@
 
 <div class="header-section text-center">
-  <div class="large-avatar">
+  <div class="header-left">
+    <div class="avatar">
     <%# add user profile picture %>
-    <% if @user.avatar.attached? %>
-      <%= cl_image_tag @user.avatar.key %>
-    <% else %>
-      <%= image_tag "https://img.freepik.com/free-vector/man-profile-account-picture_24908-81754.jpg?t=st=1712822958~exp=1712826558~hmac=c9781d106a7ee2a5373def5c8f206106b5741ffcdd0c659d54f29a2050dca332&w=1060", class: "avatar" %>
-    <% end %>
+      <% if @user.avatar.attached? %>
+        <%= cl_image_tag @user.avatar.key %>
+      <% else %>
+        <%= image_tag "https://img.freepik.com/free-vector/man-profile-account-picture_24908-81754.jpg?t=st=1712822958~exp=1712826558~hmac=c9781d106a7ee2a5373def5c8f206106b5741ffcdd0c659d54f29a2050dca332&w=1060" %>
+      <% end %>
+    </div>
   </div>
+
   <div class="user-profile-text">
     <h2>Welcome <%= @user.first_name %>!</h2>
   </div>
@@ -16,10 +19,24 @@
 
 
 <div class="button-container">
-   <button type="button" class="btn btn-primary">Change Picture</button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addpetModal" data-whatever="<%= current_user.first_name %>">Add Pet</button>
-</div>
-</div>
+   <%# Button to edit the picture %>
+   <div class="edit-form" data-controller="edit-avatar">
+    <button type="button" class="btn btn-primary" data-action="click->edit-avatar#displayForm">
+      Change Picture
+      <i class="fa-solid fa-pen fa-xs ml-2"></i>
+    </button>
+
+
+   <%# Button to add a pet %>
+   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addpetModal" data-whatever="<%= current_user.first_name %>">Add Pet</button>
+
+    <%# Edit form to change picture %>
+    <div class="d-none" data-edit-avatar-target="form">
+      <%= render "edit_avatar", user: @user %>
+    </div>
+
+    </div>
+  </div>
 
 <!-- Add Pet Modal -->
 <div class="modal fade" id="addpetModal" tabindex="-1" role="dialog" aria-labelledby="addpetModalLabel" aria-hidden="true">
