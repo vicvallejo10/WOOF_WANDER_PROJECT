@@ -16,6 +16,13 @@
     <div class="tags">
       <span class="tag">Rating: <%= @place.average_rating.round(1) %></span>
       <span class="tag">Category: <%= @place.place_type %></span>
+     <%# Iterate over the true attributes and display corresponding tags %>
+      <% @place.attributes.each do |attribute, value| %>
+        <% if value == true && attribute.to_s.start_with?("tag_") %>
+          <% tag_name = attribute.to_s.gsub("tag_", "#").capitalize %>
+          <span class="tag"><%= tag_name %></span>
+        <% end %>
+    <% end %>
     </div>
     <h3>Description</h3>
     <p class="description">
@@ -27,12 +34,12 @@
         <% @place.reviews.each do |review| %>
           <div class="review-card">
             <%# Review Avatar --> %>
-            <% if current_user.avatar.present? %>
-              <%= cl_image_tag @user.avatar.key %>
-             <% else %>
+             <%# <% if @user.avatar.attached? %>
+                <%# <%= cl_image_tag @user.avatar.key %>
+             <%# <% else %>
               <!-- Display a default avatar image if user has no avatar -->
-              <%= image_tag "default_avatar.jpg", class: "avatar" %>
-            <% end %>
+              <%# <%= image_tag "default_avatar.jpg", class: "avatar" %>
+            <%# <% end %>
             <div class="review-details">
               <h2><%= review.title %></h2>
               <p><%= review.description %></p>

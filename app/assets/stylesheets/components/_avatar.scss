@@ -9,7 +9,9 @@
 /* Larger avatar for the profile account page */
 .large-avatar img {
   width: 100px;
+  height: 100px;
   border-radius: 100%;
+  object-fit: cover;
 }
 
 /* Additional styles for bordered avatars */
