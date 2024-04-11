@@ -1,0 +1,4 @@
+  <%= simple_form_for((user), html: { method: :put }) do |f|%>
+    <%= f.input :avatar, as: :file, label: false, input_html: { multiple: false } %>
+    <%= f.submit %>
+  <% end %>

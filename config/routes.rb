@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   resources :pets, only: [:index, :show, :new, :create, :destroy]
   get '/pets/:id', to: 'pets#show', as: 'specific_pet'
 
+  put '/users/:id', to: 'accounts#update_avatar', as: 'avatar_update'
+
   # Nested route for reviews within places, allowing only new and create actions
   # Nested resources for places and reviews
   resources :places do
@@ -35,7 +37,7 @@ Rails.application.routes.draw do
 
   # Additional route for user accounts
   # Route for displaying account information for a specific user
-  resources :users, only: [] do
+  resources :users do
     member do
       get 'accounts', to: 'accounts#accountinformation', as: 'accounts'
     end
