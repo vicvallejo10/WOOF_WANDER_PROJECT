@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :lists
   end
-  get '/lists', to: 'lists#show', as: 'my_lists'
+  get '/lists', to: 'lists#index', as: 'my_lists'
 
   # Additional route for user accounts
   # Route for displaying account information for a specific user
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   #     get 'accounts', to: 'accounts#accountinformation', as: 'accounts'
   #   end
   # end
-  resources :lists, only: [:show]
+  resources :lists, only: [:index, :create, :destroy]
 
   # Additional route for showing pets within an account
   resources :accounts do

@@ -1,26 +1,29 @@
+# app/controllers/lists_controller.rb
 class ListsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @lists = List.all
+    @lists = current_user.lists
   end
 
   def create
-    @list = List.new(list_params)
-    @list.save
-    redirect_to "/lists"
+    @list = current_user.lists.build(place_id: params[:place_id])
+
+    if @list.save
+      redirect_back fallback_location: root_path, notice: 'Place added to favorites successfully.'
+    else
+      redirect_back fallback_location: root_path, alert: 'Failed to add place to favorites.'
+    end
   end
 
-  def new
-    @new_list = List.new
-  end
+  def destroy
+    @list = current_user.lists.find_by(place_id: params[:place_id])
 
-  def show
-    # get the id with params
-    @list_item = List.find(params[:id])
-  end
-
-  private
-  
-  def list_params
-    params.require(:list).permit(:name)
+    if @list
+      @list.destroy
+      redirect_back fallback_location: root_path, notice: 'Place removed from favorites successfully.'
+    else
+      redirect_back fallback_location: root_path, alert: 'Place not found in favorites.'
+    end
   end
 end
