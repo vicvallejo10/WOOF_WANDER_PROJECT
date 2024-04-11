@@ -12,8 +12,16 @@
         <% current_user.pets.each do |pet| %>
           <div class="col-12 col-md-6 col-lg-4 mb-4">
             <div class="card shadow">
-              <img src="http://via.placeholder.com/640x360" class="card-img-top" alt="Pet Image">
-              <div class="card-body">
+              <div class= pet-photo-home>
+                <%# <img src="http://via.placeholder.com/640x360" class="card-img-top" alt="Pet Image"> %>
+                <% if pet.photo.attached? %>
+                  <%= cl_image_tag pet.photo.key, alt: pet.pet_name %>
+              <% else %>
+                  <%= image_tag "https://res.cloudinary.com/dag1qh58z/image/upload/v1712857676/5340777_a5bytl.jpg" %>
+              <% end %>
+              </div>
+            </div>
+            <div class="card-body">
                 <h5 class="card-title"><%= pet.pet_name %></h5>
                 <p class="card-text">Breed: <%= pet.breed %></p>
                 <a href="/accountinformation" class="btn btn-primary btn-block">View Details</a>

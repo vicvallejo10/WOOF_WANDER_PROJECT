@@ -1,6 +1,6 @@
 class Pet < ApplicationRecord
   belongs_to :user
-  has_many_attached :photos
+  has_one_attached :photo
 
   # Define pet size options as a constant array
   SIZES = ["Small", "Medium", "Big"]
