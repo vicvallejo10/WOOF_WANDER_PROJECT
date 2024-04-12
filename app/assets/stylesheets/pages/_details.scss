@@ -89,3 +89,22 @@
     }
   }
 }
+
+
+/* Place this code in your SCSS file */
+
+// Customize the carousel container width
+#carouselExampleIndicators {
+  max-width: 800px; // Adjust the maximum width of the carousel
+  margin: 0 auto; // Center the carousel horizontally
+}
+
+// Customize the carousel items width
+.carousel-item {
+  width: 100%; // Set the width of the carousel items to 100% of the container
+}
+
+// Optionally, you can adjust the height of the carousel items
+.carousel-item img {
+  max-height: 600px; // Adjust the maximum height of the images
+}
