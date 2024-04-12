@@ -17,6 +17,20 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @review = Review.new # Initialize a new review object for the form
     @total_reviews_count = @place.reviews.count
+
+    # Assign the value for the pictures
+    case @place.place_name
+    when "Jardin du Luxembourg"
+      @ref = 1
+    when "Le Café des Chats"
+      @ref = 2
+    when "Parc des Buttes-Chaumonts"
+      @ref = 3
+    when "Bois de Vincennes"
+      @ref = 4
+    else
+      @ref = 5
+    end
     # @reviews = @place.reviews.order(created_at: :description :title)
   end
 
