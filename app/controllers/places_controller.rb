@@ -20,17 +20,6 @@ class PlacesController < ApplicationController
     # @reviews = @place.reviews.order(created_at: :description :title)
   end
 
-  # def search(params)
-  #   # place_type = params[:place_type]
-  #   size = params[:size]
-  #   # special_characteristics = params[:special_characteristics]
-  #   # ratings = params[:ratings]
-  #   # proximity = params[:proximity]
-  #   filtered_places = Place.filter(size) # ratings, proximity)
-  #   # You can return filtered_places directly or process it further as needed
-  #   render 'search'
-  # end
-
   def search
     # Fetch parameters from params hash
     size = params[:size]
@@ -51,7 +40,8 @@ class PlacesController < ApplicationController
       @markers = @places.geocoded.map do |place|
         {
           lat: place.latitude,
-          lng: place.longitude
+          lng: place.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {place: place})
         }
       end
     else
@@ -59,7 +49,7 @@ class PlacesController < ApplicationController
     end
   end
 
-  # Reminder to check if this is needed...VMT (don't erase yet)
+  # Method to pass the destination coordinates to the stimulus controller -> navigation_map
   def navigate
     @place = Place.find(params[:id])
     @markers = [@place.longitude, @place.latitude]
@@ -100,5 +90,13 @@ class PlacesController < ApplicationController
     places = places.where(tag_indoor: true) if special_characteristics.include?('Indoor')
 
     places
+  end
+
+  def save_to_list
+    place = Place.find(params[:place_id])
+    list = current_user.lists.find(params[:list_id])
+    list.places << place
+
+    redirect_to place_path(place), notice: "Place saved to list successfully!"
   end
 end

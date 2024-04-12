@@ -1,5 +1,8 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [ :update]
+  before_action :set_account, only: [:update]
+
+  def index
+  end
 
   def accountinformation
     @user = current_user
@@ -14,6 +17,12 @@ class AccountsController < ApplicationController
     end
   end
 
+  def update_avatar
+    @user = User.find(current_user.id)
+    @user.update(avatar_params)
+    redirect_to accountinformation_path
+  end
+
   private
 
   def set_account
@@ -22,5 +31,9 @@ class AccountsController < ApplicationController
 
   def account_params
     params.require(:account).permit(:username, :bio)
+  end
+
+  def avatar_params
+    params.require(:user).permit(:avatar)
   end
 end

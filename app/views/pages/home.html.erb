@@ -5,22 +5,46 @@
     <!-- Display content for logged-in users -->
     <h1 class="text-center">Hi, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
     <!-- Add additional content for logged-in users -->
-    <!-- Card displaying the picture of the user's pet -->
-    <div class="row">
-      <% current_user.pets.each do |pet| %>
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-          <div class="card shadow">
-            <img src="http://via.placeholder.com/640x360" class="card-img-top" alt="Pet Image">
+    <!-- Check if the user has pets -->
+    <% if current_user.pets.any? %>
+      <!-- Display the user's pets -->
+      <div class="row">
+        <% current_user.pets.each do |pet| %>
+          <div class="col-12 col-md-6 col-lg-4 mb-4">
+            <div class="card shadow">
+              <div class= pet-photo-home>
+                <%# <img src="http://via.placeholder.com/640x360" class="card-img-top" alt="Pet Image"> %>
+                <% if pet.photo.attached? %>
+                  <%= cl_image_tag pet.photo.key, alt: pet.pet_name %>
+              <% else %>
+                  <%= image_tag "https://res.cloudinary.com/dag1qh58z/image/upload/v1712857676/5340777_a5bytl.jpg" %>
+              <% end %>
+              </div>
+            </div>
             <div class="card-body">
-              <h5 class="card-title"><%= pet.pet_name %></h5>
-              <p class="card-text">Breed: <%= pet.breed %></p>
-              <a href="/accountinformation" class="btn btn-primary btn-block">View Details</a>
+                <h5 class="card-title"><%= pet.pet_name %></h5>
+                <p class="card-text">Breed: <%= pet.breed %></p>
+                <a href="/accountinformation" class="btn btn-primary btn-block">View Details</a>
+              </div>
             </div>
           </div>
+        <% end %>
+      </div>
+    <% else %>
+      <!-- If the user does not have pets, display an "Add New Pet" button and a "Get Started" text -->
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title">Get Started</h5>
+            <p class="card-text">You don't have any pets yet. Click below to add a new pet!</p>
+            <a href="/accountinformation" class="btn btn-primary">Add New Pet</a>
+          </div>
         </div>
-      <% end %>
-    </div>
-<%#
+      </div>
+    <% end %>
+
+
+    <%#
     <!-- Recommendation of the Day -->
     <div class="row mt-4">
       <div class="col-12">

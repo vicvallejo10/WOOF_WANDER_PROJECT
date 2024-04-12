@@ -30,21 +30,17 @@
 }
 
 /* Rating stars */
-.rating-group {
-  display: inline-flex;
-}
+.star-rating {
+  input[type="radio"] {
+    display: none;
 
-.rating__label {
-  cursor: pointer;
-  padding: 0 0.1em;
-  font-size: 1rem;
-}
+    &:checked ~ label {
+      color: orange;
+    }
+  }
 
-.rating__icon--star {
-  color: gray; /* Default star color */
-}
-
-/* Make hovered input's previous siblings orange on hover */
-.rating__input:hover ~ .rating__label .rating__icon--star {
-  color: orange;
+  label {
+    font-size: 24px;
+    cursor: pointer;
+  }
 }

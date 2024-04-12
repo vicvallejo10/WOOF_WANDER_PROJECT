@@ -7,7 +7,7 @@
       <%# <% end %>
     </div>
     <div class="buttons">
-      <%= link_to "Take me there", navigate_path, class: "btn btn-primary" %>
+      <%= link_to "Take me there", navigate_path, class: "btn btn-primary take-me-there" %>
       <%= link_to "Back", places_path, class: "btn btn-secondary back" %>
     </div>
   </div>
@@ -16,6 +16,13 @@
     <div class="tags">
       <span class="tag">Rating: <%= @place.average_rating.round(1) %></span>
       <span class="tag">Category: <%= @place.place_type %></span>
+     <%# Iterate over the true attributes and display corresponding tags %>
+      <% @place.attributes.each do |attribute, value| %>
+        <% if value == true && attribute.to_s.start_with?("tag_") %>
+          <% tag_name = attribute.to_s.gsub("tag_", "#").capitalize %>
+          <span class="tag"><%= tag_name %></span>
+        <% end %>
+    <% end %>
     </div>
     <h3>Description</h3>
     <p class="description">
@@ -26,12 +33,17 @@
       <% if @place.reviews.any? %>
         <% @place.reviews.each do |review| %>
           <div class="review-card">
-            <%# Review Avatar -->
-            <%= image_tag review.user.avatar.url, alt: "Avatar", class: "avatar" %>
+            <%# Review Avatar --> %>
+             <%# <% if @user.avatar.attached? %>
+                <%# <%= cl_image_tag @user.avatar.key %>
+             <%# <% else %>
+              <!-- Display a default avatar image if user has no avatar -->
+              <%# <%= image_tag "default_avatar.jpg", class: "avatar" %>
+            <%# <% end %>
             <div class="review-details">
               <h2><%= review.title %></h2>
               <p><%= review.description %></p>
-              <p><strong>Reviewer:</strong> <%= review.user.first_name %></p>
+              <p>-<em><%= review.user.first_name %></em></p>
             </div>
           </div>
         <% end %>

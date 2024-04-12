@@ -1,0 +1,37 @@
+.mapboxgl-popup {
+  max-width: 100px;
+}
+
+.mapboxgl-popup-content {
+  text-align:left;
+  font-family: "Open Sans", sans-serif;
+  padding: 0;
+}
+
+.map-marker{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    font-size: 9px;
+  }
+
+  .map-marker a {
+    font-size: 11px;
+    text-decoration: none;
+  }
+
+  .map-marker p {
+    font-size: 9px;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+.map-marker img {
+  height: 100%;
+  width: 100px;
+  object-fit: cover;
+}
+
+.map-marker .place-info {
+  padding-left: 5px;
+}

@@ -1,0 +1,11 @@
+<!-- app/views/lists/index.html.erb -->
+<h1>Your Favorites</h1>
+<% if @lists.any? %>
+  <ul>
+    <% @lists.each do |list| %>
+      <li><%= list.place.place_name %> (<%= link_to 'Remove', list_path(list.place_id), method: :delete %>)</li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No favorites yet.</p>
+<% end %>
