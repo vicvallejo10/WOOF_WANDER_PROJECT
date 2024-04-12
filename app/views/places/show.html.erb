@@ -8,7 +8,8 @@
     </div>
     <div class="buttons">
       <%= link_to "Take me there", navigate_path, class: "btn btn-primary take-me-there" %>
-      <%= link_to "Back", places_path, class: "btn btn-secondary back" %>
+      <!-- changed the code for Back to make it go back to the previous page instead of defaulting to explore page-->
+      <%= link_to "Back", places_path, class: "btn btn-secondary back", onclick: "window.history.back();" %>
     </div>
   </div>
 
