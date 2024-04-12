@@ -25,10 +25,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   resources :pets, only: [:index, :show, :new, :create, :destroy, :edit]
+  patch '/pets/:id', to: 'pets#update', as: 'update_pet'
   # get '/pets/:id', to: 'pets#show', as: 'specific_pet'
-   get '/pets/:id/edit', to: 'pets#edit', as: 'edit_specific_pet'
-
-  put '/users/:id', to: 'accounts#update_avatar', as: 'avatar_update'
+  # get '/pets/:id/edit', to: 'pets#edit', as: 'edit_specific_pet'
 
   # Nested route for reviews within places, allowing only new and create actions
   # Nested resources for places and reviews
@@ -36,20 +35,13 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
-  # Nested routes for lists belonging to a user
-  resources :users do
-    resources :lists
-  end
-  get '/lists', to: 'lists#index', as: 'my_lists'
-
   # Additional route for user accounts
   # Route for displaying account information for a specific user
-  # resources :users do
-  #   member do
-  #     get 'accounts', to: 'accounts#accountinformation', as: 'accounts'
-  #   end
-  # end
-  resources :lists, only: [:index, :create, :destroy]
+  resources :users, only: [] do
+    member do
+      get 'accounts', to: 'accounts#accountinformation', as: 'accounts'
+    end
+  end
 
   # Additional route for showing pets within an account
   resources :accounts do
