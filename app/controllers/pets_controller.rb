@@ -24,7 +24,7 @@ class PetsController < ApplicationController
     pet_name = @pet.pet_name
 
     if @pet.destroy
-      redirect_to accountinformation_path, notice: "Pet '#{pet_name}' was successfully deleted."
+      redirect_to accountinformation_path, notice: "#{pet_name} was successfully deleted."
     else
       redirect_to accountinformation_path, alert: "Delete attempt unsuccessful"
     end
