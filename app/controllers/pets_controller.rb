@@ -39,8 +39,8 @@ class PetsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def age
     now = Time.now.utc.to_date
