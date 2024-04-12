@@ -4,190 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pet Details</title>
-
 </head>
 <body>
+<!-- show.html.erb -->
 
-<!-- pet details -->
-<div class="container">
-  <h1><%= @pet.pet_name %></h1>
-
-  <table>
-    <tr>
-      <th>Birthdate</th>
-      <td class="pet-detail" data-pet-id="<%= @pet.id %>" data-column-name="birthdate"><%= @pet.birthdate %></td>
-    </tr>
-    <tr>
-      <th>Microchip Number</th>
-      <td class="pet-detail" data-pet-id="<%= @pet.id %>" data-column-name="microchip_number"><%= @pet.microchip_number %></td>
-    </tr>
-    <tr>
-      <th>Breed</th>
-      <td class="pet-detail" data-pet-id="<%= @pet.id %>" data-column-name="breed"><%= @pet.breed %></td>
-    </tr>
-    <tr>
-      <th>Size</th>
-      <td class="pet-detail" data-pet-id="<%= @pet.id %>" data-column-name="size"><%= @pet.size %></td>
-    </tr>
-    <tr>
-      <th>Color</th>
-      <td class="pet-detail" data-pet-id="<%= @pet.id %>" data-column-name="color"><%= @pet.color %></td>
-    </tr>
-    <tr>
-      <th>Sterilized</th>
-      <td class="pet-detail" data-pet-id="<%= @pet.id %>" data-column-name="sterilized"><%= @pet.sterilized ? 'Yes' : 'No' %></td>
-    </tr>
-    <tr>
-      <th>Vaccine Card</th>
-      <td class="pet-detail" data-pet-id="<%= @pet.id %>" data-column-name="vaccine_card"><%= @pet.vaccine_card %></td>
-    </tr>
-    <tr>
-      <th>Created At</th>
-      <td><%= @pet.created_at %></td>
-    </tr>
-    <tr>
-      <th>Updated At</th>
-      <td><%= @pet.updated_at %></td>
-    </tr>
-  </table>
-  <!-- buttons -->
-<div class="buttons">
-<button type="button" class="btn btn-primary">Change Picture</button>
-</div>
-  <!-- Edit Icon -->
-  <div class="edit-icons">
-    <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Edit" title="Edit" class="edit-icon" />
-    <img src="https://img.icons8.com/material-outlined/24/checkmark--v1.png" alt="Save" title="Save" class="save-icon" style="display: none;" />
-    <img src="https://img.icons8.com/material-outlined/24/multiply--v1.png" alt="Cancel" title="Cancel" class="cancel-icon" style="display: none;" />
+<div class="pet-card">
+  <!-- Display Pet Information -->
+    <h2><%= @pet.pet_name %></h2>
+    <p><strong>Birthdate:</strong> <%= @pet.birthdate %></p>
+    <p><strong>Microchip Number:</strong> <%= @pet.microchip_number %></p>
+    <p><strong>Breed:</strong> <%= @pet.breed %></p>
+    <p><strong>Size:</strong> <%= @pet.size %></p>
+    <p><strong>Color:</strong> <%= @pet.color %></p>
+    <p><strong>Sterilized:</strong> <%= @pet.sterilized ? 'Yes' : 'No' %></p>
+    <p><strong>Vaccine Card:</strong> <%= @pet.vaccine_card %></p>
+    <%= link_to "Edit Pet", edit_pet_path(@pet), class: "btn btn-sm btn-primary mt-2" %>
   </div>
+
+  <%# <!-- Edit Pet Form (Initially Hidden) -->
+  <%= simple_form_for @pet,
+    html: {
+      class: @pet.errors.any? ? "" : "d-none",
+      data: {
+        edit_pet_target: "form",
+        action: "submit->edit-pet#update"
+      }
+    } do |f|
+
+    <%= f.input :pet_name
+    <%= f.input :birthdate, as: :date
+    <%= f.input :microchip_number
+    <%= f.input :breed
+    <%= f.input :size, collection: ['Small', 'Medium', 'Large']
+    <%= f.input :color
+    <%= f.input :sterilized, as: :boolean
+    <%= f.input :vaccine_card %>
+    <%# f.button :submit, "Save", class: "btn btn-sm btn-primary btn-block mt-2", data: { action: "click->edit-pet#update" } %>
+    <%# <%= f.button :button, "Cancel", class: "btn btn-sm btn-primary btn-block mt-2", onclick: "window.history.back();" %>
+
+  <%# <% end %>
 </div>
 
+<!-- StimulusJS Script
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const petDetails = document.querySelectorAll(".pet-detail");
-    const editIcon = document.querySelector(".edit-icon");
-    const saveIcon = document.querySelector(".save-icon");
-    const cancelIcon = document.querySelector(".cancel-icon");
+    const application = Stimulus.Application.start();
 
-    let originalValues = {}; // Object to store original values
+    application.register("edit-pet", class extends Stimulus.Controller {
+      static targets = ["card", "infos", "form"];
 
-    editIcon.addEventListener("click", () => {
-      petDetails.forEach(detail => {
-        const columnName = detail.dataset.columnName;
-        const oldValue = detail.innerText.trim();
-        let input;
+      displayForm() {
+        this.infosTarget.classList.add("d-none"); // Hide pet infos
+        this.formTarget.classList.remove("d-none"); // Show edit form
+      }
 
-        if (columnName === "birthdate") {
-          input = document.createElement("input");
-          input.type = "date";
-          input.value = oldValue;
-        } else if (columnName === "size") {
-          input = document.createElement("div");
-          input.innerHTML = `
-            <label>
-              <input type="radio" name="size" value="Small" ${oldValue === "Small" ? 'checked' : ''}>
-              Small
-            </label>
-            <label>
-              <input type="radio" name="size" value="Medium" ${oldValue === "Medium" ? 'checked' : ''}>
-              Medium
-            </label>
-            <label>
-              <input type="radio" name="size" value="Large" ${oldValue === "Large" ? 'checked' : ''}>
-              Large
-            </label>
-          `;
-        } else if (columnName === "sterilized") {
-          input = document.createElement("div");
-          input.innerHTML = `
-            <label>
-              <input type="radio" name="sterilized" value="Yes" ${oldValue === "Yes" ? 'checked' : ''}>
-              Yes
-            </label>
-            <label>
-              <input type="radio" name="sterilized" value="No" ${oldValue === "No" ? 'checked' : ''}>
-              No
-            </label>
-          `;
-        } else {
-          input = document.createElement("input");
-          input.value = oldValue;
-        }
-
-        input.classList.add("edit-input");
-        detail.innerText = "";
-        detail.appendChild(input);
-
-        editIcon.style.display = "none";
-        saveIcon.style.display = "inline-block";
-        cancelIcon.style.display = "inline-block";
-
-        detail.dataset.editable = "true";
-
-        // Store original value
-        originalValues[columnName] = oldValue;
-      });
+      update() {
+        this.infosTarget.classList.remove("d-none"); // Show pet infos
+        this.formTarget.classList.add("d-none"); // Hide edit form
+      }
     });
-
-    saveIcon.addEventListener("click", () => {
-      petDetails.forEach(detail => {
-        const newValue = detail.querySelector("input").value.trim();
-        const columnName = detail.dataset.columnName;
-        const petId = detail.dataset.petId;
-
-        if (newValue !== originalValues[columnName]) {
-          updatePetDetail(petId, columnName, newValue);
-        }
-
-        detail.innerText = newValue;
-        editIcon.style.display = "inline-block";
-        saveIcon.style.display = "none";
-        cancelIcon.style.display = "none";
-        detail.dataset.editable = "false";
-      });
-
-      // Clear originalValues after saving
-      originalValues = {};
-    });
-
-    cancelIcon.addEventListener("click", () => {
-      petDetails.forEach(detail => {
-        const columnName = detail.dataset.columnName;
-        detail.innerText = originalValues[columnName]; // Revert to original value
-
-        editIcon.style.display = "inline-block";
-        saveIcon.style.display = "none";
-        cancelIcon.style.display = "none";
-        detail.dataset.editable = "false";
-      });
-
-      // Clear originalValues after canceling
-      originalValues = {};
-    });
-
-    function updatePetDetail(petId, columnName, value) {
-      const url = `/pets/${petId}`;
-
-      fetch(url, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
-        },
-        body: JSON.stringify({ columnName: columnName, value: value })
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok.");
-        }
-      })
-      .catch(error => {
-        console.error("Error updating pet detail:", error);
-      });
-    }
   });
-</script>
-
-
+</script> -->
 </body>
 </html>

@@ -38,9 +38,8 @@ class PetsController < ApplicationController
       render :edit
     end
   end
-  
+
   def edit
-    # Your edit action logic here
   end
 
   def age

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Pet Details</title>
+</head>
+<body>
+  <%= simple_form_for @pet, url: pet_path(@pet), method: :patch do |f| %>
+    <%= f.input :pet_name, required: true %>
+    <%= f.input :birthdate, as: :date %>
+    <%= f.input :microchip_number %>
+    <%= f.input :breed %>
+    <%= f.input :size, collection: ['Small', 'Medium', 'Large'], required: true %>
+    <%= f.input :color %>
+    <div>
+      <%= f.input :sterilized, as: :radio_buttons, collection: [['Yes', true], ['No', false]] %>
+    </div>
+    <%= f.input :vaccine_card %>
+
+    <!-- Submit and Cancel Buttons -->
+    <%= f.button :submit, "Save", class: "btn btn-sm btn-primary btn-block mt-2" %>
+    <%= button_tag "Cancel", type: "button", class: "btn btn-sm btn-primary btn-block mt-2", onclick: "window.history.back();" %>
+    <%= button_tag "Change Picture", type: "button", class: "btn btn-sm btn-primary btn-block mt-2" %>
+  <% end %>
+</body>
+</html>
