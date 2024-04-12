@@ -1,3 +1,12 @@
+.hero{
+  padding-top: 100px;
+}
+
+.button-toggle {
+align-items:end;
+padding-top: 20px;
+}
+
 .card-product {
   position: relative;
   overflow: hidden;
@@ -52,4 +61,3 @@
 .heart-icon.active {
   color: red;
 }
-
