@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   # Route for navigation instructions to a place, handled by the navigate action of the places controller, with an alias 'navigate'
   get '/places/:id/navigate', to: 'places#navigate', as: 'navigate'
+  post 'places/updatelist', to: 'places#updatelist', as: 'update_list'
 
   # Route for revealing health status. Returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

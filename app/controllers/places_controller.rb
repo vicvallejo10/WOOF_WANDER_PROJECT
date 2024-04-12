@@ -70,6 +70,25 @@ class PlacesController < ApplicationController
     puts @markers
   end
 
+  # method to update the list. The info comes from the stimulus controller 'heart'
+  def updatelist
+    # first we get the param from the JSON
+    @place = Place.find(params[:place_id])
+
+    # we check if the place is already in the favorite
+    @list = List.find_by(user_id: current_user.id, place_id: @place.id)
+    puts "test list:"
+    puts @list
+    if @list.nil?
+      # there is no place_id in the user's list, so we create it
+      @list = List.new(user_id: current_user.id, place_id: @place.id)
+      @list.save
+    else
+      # otherwise, we delete the existing place (because the user unclick the heart)
+      @list.destroy
+    end
+  end
+
   private
 
   def apply_filters
@@ -106,6 +125,7 @@ class PlacesController < ApplicationController
     places
   end
 
+  # I didn't modify the method and created a new one below this one
   def save_to_list
     place = Place.find(params[:place_id])
     list = current_user.lists.find(params[:list_id])
