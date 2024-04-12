@@ -135,7 +135,11 @@
                   <h4><%= link_to place.place_name, place_path(place) %></h4>
                   <p><%= place.place_description %></p>
                   <p>Rating: <%= place.average_rating %></p> <!-- Average rating -->
-                  <i class="heart-icon fa fa-heart"></i> <!-- Heart icon -->
+                  <% if current_user.lists.find_by(place_id: place.id).nil? %>
+                    <i class="heart-icon fa fa-heart" data-controller="heart" data-action="click->heart#updatefavorite" data-heart-target="item" data-heart-placeid-value=<%=place.id%>></i> <!-- Heart icon + controller stimulus -->
+                  <% else %>
+                    <i class="heart-icon fa fa-heart active" data-controller="heart" data-action="click->heart#updatefavorite" data-heart-target="item" data-heart-placeid-value=<%=place.id%>></i>
+                  <% end %>
                 </div>
               </div>
             <% end %>
@@ -147,16 +151,6 @@
     </div>
   </div>
 </div>
-
-
-<!-- JavaScript for heart icon functionality -->
-<script>
-  document.querySelectorAll('.heart-icon').forEach(function(icon) {
-    icon.addEventListener('click', function() {
-      icon.classList.toggle('active'); // Toggle active class on click
-    });
-  });
-</script>
 
 
 <!-- JavaScript for Modal Actions -->
