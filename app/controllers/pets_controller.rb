@@ -39,6 +39,12 @@ class PetsController < ApplicationController
     end
   end
 
+  # def update_photo
+  #   @pet = Pet.find(params[:id])
+  #   @pet.update(avatar_params)
+  #   redirect_to accountinformation_path
+  # end
+
   def age
     now = Time.now.utc.to_date
     birthdate = self.birthdate
@@ -49,7 +55,7 @@ class PetsController < ApplicationController
   private
 
   def pet_params
-    params.require(:pet).permit(:pet_name, :birthdate, :microchip_number, :breed, :size, :color, :sterilized) #:vaccine_card, :pet_photo)
+    params.require(:pet).permit(:pet_name, :birthdate, :microchip_number, :breed, :size, :color, :sterilized, :photo) #:vaccine_card, :pet_photo)
   end
   def set_pet
     @pet = Pet.find(params[:id])

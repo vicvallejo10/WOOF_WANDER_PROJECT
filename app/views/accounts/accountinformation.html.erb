@@ -105,6 +105,12 @@
             <%= f.text_field :color, class: "form-control", id: "color" %>
           </div>
 
+          <%# Update pet picture %>
+          <%# <div class="form-group"> %>
+            <%# <label for="photo">Photo:</label> %>
+            <%= f.input :photo, as: :file, input_html: { multiple: false } %>
+          <%# </div> %>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <%= f.button :submit, "Add Pet", class: "btn btn-primary" %>
