@@ -12,6 +12,13 @@
 <div class="pet-card">
   <!-- Display Pet Information -->
     <h2><%= @pet.pet_name %></h2>
+    <div class ="pet-photo-home">
+              <% if @pet.photo.attached? %>
+                  <%= cl_image_tag pet.photo.key, alt: pet.pet_name %>
+              <% else %>
+                  <%= image_tag "https://res.cloudinary.com/dag1qh58z/image/upload/v1712857676/5340777_a5bytl.jpg" %>
+              <% end %>
+            </div>
     <p><strong>Birthdate:</strong> <%= @pet.birthdate %></p>
     <p><strong>Microchip Number:</strong> <%= @pet.microchip_number %></p>
     <p><strong>Breed:</strong> <%= @pet.breed %></p>
