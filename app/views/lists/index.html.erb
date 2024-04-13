@@ -1,11 +1,21 @@
 <!-- app/views/lists/index.html.erb -->
+<!-- Your Favorites Section -->
 <h1>Your Favorites</h1>
+
 <% if @lists.any? %>
-  <ul>
+  <div class="row">
     <% @lists.each do |list| %>
-      <li><%= list.place.place_name %> <%# (<%= link_to 'Remove', list_path(list.place_id), method: :delete %></li>
+      <div class="col-sm-4"> <!-- Adjust column size as needed -->
+        <div class="card-product">
+          <%= image_tag "#{list.place.ref}1.jpg" %> <!-- Assuming each place has an image ref -->
+          <div class="card-product-infos">
+            <h4><%= link_to list.place.place_name, place_path(list.place) %></h4> <!-- Link to place show page -->
+            <!-- Additional details if needed -->
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% else %>
   <p>No favorites yet.</p>
 <% end %>

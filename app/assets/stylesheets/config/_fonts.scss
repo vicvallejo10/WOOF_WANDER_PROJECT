@@ -1,16 +1,31 @@
-// Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+/* Define fonts */
+$headers-font: 'Montserrat';
 
-// Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+/* Define font weights */
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 1000;
 
-// To use a font file (.woff) uncomment following lines
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
+/* Import Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;1000&display=swap');
+
+/* Bootstrap variables */
+$headings-font-family: $headers-font;
+
+/* Define fonts for body and headers */
+$body-font: 'Montserrat', sans-serif;
+$headers-font-bold: 'Montserrat', sans-serif; /* Bold weight */
+$headers-font-normal: 'Montserrat', sans-serif; /* Normal weight */
+
+/* Example usage */
+body {
+  font-family: $body-font;
+}
+
+h1, h2 {
+  font-family: $headers-font-bold; /* Apply bold weight for h1 and h2 */
+}
+
+h3, h4, h5, h6 {
+  font-family: $headers-font-normal; /* Apply normal weight for h3, h4, h5, h6 */
+}

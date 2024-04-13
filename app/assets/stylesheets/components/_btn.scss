@@ -1,3 +1,50 @@
+.login-button {
+  display: inline-flex; /* Use inline-flex for better alignment */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem; /* Increased padding for better visual appearance */
+  font-size: 1rem;
+  font-weight: 500; /* Slightly increased font weight */
+  line-height: 1.5;
+  color: white; /* Set text color to white */
+  background-color: darkorange;
+  border: 2px solid darkorange; /* Use a consistent border width and color */
+  border-radius: 0.5rem; /* Increased border radius for a rounded button */
+  cursor: pointer; /* Add pointer cursor to indicate interactivity */
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Add transition effects */
+}
+
+/* Hover effect */
+.login-button:hover {
+  background-color: orange; /* Darken background color on hover */
+  border-color: orange; /* Darken border color on hover */
+  color: white; /* Set text color to white */
+}
+
+/* Focus effect */
+.login-button:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.5); /* Add focus shadow */
+}
+
+.btn btn-secondary back {
+  display: inline-flex; /* Use inline-flex for better alignment */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem; /* Increased padding for better visual appearance */
+  font-size: 1rem;
+  font-weight: 500; /* Slightly increased font weight */
+  line-height: 1.5;
+  color: white; /* Set text color to white */
+  background-color: darkgray;
+  border: 2px solid darkgray; /* Use a consistent border width and color */
+  border-radius: 0.5rem; /* Increased border radius for a rounded button */
+  cursor: pointer; /* Add pointer cursor to indicate interactivity */
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Add transition effects */
+}
+
 .button-container {
   display: flex;
   justify-content: center;
