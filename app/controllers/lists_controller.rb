@@ -2,8 +2,12 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
 
+  # def index
+  #   @lists = current_user.lists
+  # end
+
   def index
-    @lists = current_user.lists
+    @saved_places = current_user.lists.map(&:place)
   end
 
   def create
