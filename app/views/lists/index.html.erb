@@ -3,8 +3,10 @@
 <h1>Saved Places</h1>
 <% if @saved_places.any? %>
   <ul>
-    <% @saved_places.each do |place| %>
-      <li><%= place.name %></li>
+
+    <% @lists.each do |list| %>
+    <% saved_place = Place.find(list.place_id) %>
+      <li><%= saved_place.place_name %> (<%= link_to 'Remove', list_path(saved_place.id), method: :delete %>)</li>
     <% end %>
   </ul>
 <% else %>
