@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Pet Details</title>
-</head>
-<body>
+<title>Edit Pet Details</title>
+
   <%= simple_form_for @pet, url: pet_path(@pet), method: :patch do |f| %>
+
     <%= f.input :pet_name, required: true %>
     <%= f.input :birthdate, as: :date %>
     <%= f.input :microchip_number %>
@@ -22,5 +17,48 @@
     <%= button_tag "Cancel", type: "button", class: "btn btn-sm btn-primary btn-block mt-2", onclick: "window.history.back();" %>
     <%= button_tag "Change Picture", type: "button", class: "btn btn-sm btn-primary btn-block mt-2" %>
   <% end %>
-</body>
-</html>
+<!-- 
+    <div class="form-group">
+      <%= f.label :pet_name, "Pet Name*" %>
+      <%= f.text_field :pet_name, required: true, class: "form-control" %>
+    </div>
+
+  <div class="form-group">
+    <%= f.label :birthdate, "Birth Date" %>
+    <%= f.date_field :birthdate, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :microchip_number, "Microchip No." %>
+    <%= f.text_field :microchip_number, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :breed, "Breed" %>
+    <%= f.text_field :breed, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :size, "Size*" %>
+    <%= f.select :size, ['Small', 'Medium', 'Large'], { prompt: "Select size" }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :color, "Color" %>
+    <%= f.text_field :color, class: "form-control" %>
+  </div>
+
+  <%# <div class="form-group">
+    <%= f.label :sterilized, "Sterilized" %>
+    <%#= f.select :sterilized, [['Yes', true], ['No', false]], { prompt: "Select sterilized status" }, class: "form-control" %>
+
+  <%# <div class="form-group">
+    <%= f.label :vaccine_card, "Vaccine Card" %>
+    <%#= f.text_field :vaccine_card, class: "form-control" %>
+
+  <!-- Submit and Cancel Buttons -->
+  <%= f.button :submit, "Save", class: "btn btn-sm btn-primary btn-block mt-2", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :submit %>
+  <%= button_tag "Cancel", type: "button", class: "btn btn-sm btn-primary btn-block mt-2", onclick: "window.history.back();" %>
+<% end %>
+ -->
+

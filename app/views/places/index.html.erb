@@ -130,7 +130,7 @@
             <% @places.each do |place| %>
               <!-- Use link_to helper to create a hyperlink -->
               <div class="card-product">
-                <img src="https://picsum.photos/seed/picsum/200/300">
+                <%= image_tag "#{place.ref}1.jpg" %>
                 <div class="card-product-infos">
                   <h4><%= link_to place.place_name, place_path(place) %></h4>
                   <p><%= place.place_description %></p>

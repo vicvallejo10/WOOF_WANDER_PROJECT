@@ -23,13 +23,14 @@
             <% if current_user.avatar.attached? %>
               <%= cl_image_tag current_user.avatar.key %>
             <% else %>
-              <%= image_tag "https://img.freepik.com/free-vector/man-profile-account-picture_24908-81754.jpg?t=st=1712822958~exp=1712826558~hmac=c9781d106a7ee2a5373def5c8f206106b5741ffcdd0c659d54f29a2050dca332&w=1060", class: "avatar", alt: 'dropdown' %>
+              <%= image_tag "https://res.cloudinary.com/dag1qh58z/image/upload/v1713026463/default-avatar_uy0vmo.jpg", class: "avatar", alt: 'dropdown' %>
             <% end %>
             </div>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Account details", "/accountinformation", class: "dropdown-item" %>
               <%= link_to "My lists", "/lists", class: "dropdown-item" %>
+              <%= link_to "Blog", "/blog", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
