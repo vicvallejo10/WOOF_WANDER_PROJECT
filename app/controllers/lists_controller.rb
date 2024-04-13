@@ -2,13 +2,13 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
 
-  # def index
-  #   @lists = current_user.lists
-  # end
-
   def index
-    @saved_places = current_user.lists.map(&:place)
+    @lists = current_user.lists
   end
+
+  # def index
+  #   @saved_places = current_user.lists.map(&:place)
+  # end
 
   def create
     @list = current_user.lists.build(place_id: params[:place_id])
