@@ -14,12 +14,18 @@ Rails.application.routes.draw do
   # Route for displaying account information, handled by the accountinformation action of the accounts controller
   get '/accountinformation', to: 'accounts#accountinformation'
 
+  # added by Olivier on Saturday
+  put '/users/update', to: 'accounts#update_avatar', as: 'update_avatar'
+
   # Route for searching places, handled by the search action of the places controller, with an alias 'search'
   # get '/places/search', to: 'places#search', as: 'search'
 
   # Route for navigation instructions to a place, handled by the navigate action of the places controller, with an alias 'navigate'
   get '/places/:id/navigate', to: 'places#navigate', as: 'navigate'
   post 'places/updatelist', to: 'places#updatelist', as: 'update_list'
+
+  # added by Olivier on Saturday
+  resources :lists, only: [:index, :destroy]
 
   # Route for revealing health status. Returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
