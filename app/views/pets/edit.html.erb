@@ -1,12 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Pet Details</title>
-</head>
-<body>
+<title>Edit Pet Details</title>
+
   <%= simple_form_for @pet, url: pet_path(@pet), method: :patch do |f| %>
+
+    <%= f.input :pet_name, required: true %>
+    <%= f.input :birthdate, as: :date %>
+    <%= f.input :microchip_number %>
+    <%= f.input :breed %>
+    <%= f.input :size, collection: ['Small', 'Medium', 'Large'], required: true %>
+    <%= f.input :color %>
+    <%= f.input :sterilized, as: :radio_buttons, collection: [['Yes', true], ['No', false]] %>
+    <%= f.input :vaccine_card %>
+    <%= f.input :photo, as: :file, input_html: { multiple: false } %>
+
+    <!-- Submit and Cancel Buttons -->
+    <%= f.button :submit, "Save", class: "btn btn-sm btn-primary btn-block mt-2", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :submit %>
+    <%= button_tag "Cancel", type: "button", class: "btn btn-sm btn-primary btn-block mt-2", onclick: "window.history.back();" %>
+    <%= button_tag "Change Picture", type: "button", class: "btn btn-sm btn-primary btn-block mt-2" %>
+  <% end %>
+<!-- 
     <div class="form-group">
       <%= f.label :pet_name, "Pet Name*" %>
       <%= f.text_field :pet_name, required: true, class: "form-control" %>
@@ -49,6 +60,5 @@
   <%= f.button :submit, "Save", class: "btn btn-sm btn-primary btn-block mt-2", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :submit %>
   <%= button_tag "Cancel", type: "button", class: "btn btn-sm btn-primary btn-block mt-2", onclick: "window.history.back();" %>
 <% end %>
+ -->
 
-</body>
-</html>
