@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   post 'places/updatelist', to: 'places#updatelist', as: 'update_list'
   get '/lists', to: 'lists#index'
 
+  get '/blog', to: 'pages#blog'
+
   # added by Olivier on Saturday
   resources :lists, only: [:index, :destroy]
 
