@@ -17,8 +17,8 @@
     <p><strong>Breed:</strong> <%= @pet.breed %></p>
     <p><strong>Size:</strong> <%= @pet.size %></p>
     <p><strong>Color:</strong> <%= @pet.color %></p>
-    <p><strong>Sterilized:</strong> <%= @pet.sterilized ? 'Yes' : 'No' %></p>
-    <p><strong>Vaccine Card:</strong> <%= @pet.vaccine_card %></p>
+    <%# <p><strong>Sterilized:</strong> <%= @pet.sterilized ? 'Yes' : 'No' %></p>
+    <%# <p><strong>Vaccine Card:</strong> <%= @pet.vaccine_card %></p>
     <%= link_to "Edit Pet", edit_pet_path(@pet), class: "btn btn-sm btn-primary mt-2" %>
   </div>
 
