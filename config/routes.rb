@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # Route for navigation instructions to a place, handled by the navigate action of the places controller, with an alias 'navigate'
   get '/places/:id/navigate', to: 'places#navigate', as: 'navigate'
   post 'places/updatelist', to: 'places#updatelist', as: 'update_list'
+  get '/lists', to: 'lists#index'
 
   # added by Olivier on Saturday
   resources :lists, only: [:index, :destroy]
