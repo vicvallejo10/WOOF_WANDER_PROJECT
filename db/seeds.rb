@@ -87,7 +87,8 @@ place1 = {
   tag_smallpet: true,
   tag_mediumpet: true,
   tag_largepet: true,
-  tag_disposalstation: true
+  tag_disposalstation: true,
+  ref: 1
 }
 
 place2 = {
@@ -107,7 +108,8 @@ place2 = {
   tag_smallpet: true,
   tag_mediumpet: false,
   tag_largepet: false,
-  tag_disposalstation: false
+  tag_disposalstation: false,
+  ref: 2
 }
 
 place4 = {
@@ -127,7 +129,8 @@ place4 = {
   tag_smallpet: true,
   tag_mediumpet: true,
   tag_largepet: true,
-  tag_disposalstation: true
+  tag_disposalstation: true,
+  ref: 4
 }
 
 place3 = {
@@ -147,7 +150,8 @@ place3 = {
   tag_smallpet: true,
   tag_mediumpet: true,
   tag_largepet: true,
-  tag_disposalstation: true
+  tag_disposalstation: true,
+  ref: 3
 }
 
 place5 = {
@@ -167,7 +171,8 @@ place5 = {
   tag_smallpet: true,
   tag_mediumpet: true,
   tag_largepet: true,
-  tag_disposalstation: false
+  tag_disposalstation: false,
+  ref: 5
 }
 
 [place1, place2, place3, place4, place5].each do |attributes|
