@@ -2,6 +2,7 @@
 .login-container {
   max-width: 400px;
   margin: 0 auto;
+  margin-top: 20px;
 }
 
 .form-inputs {
@@ -10,18 +11,13 @@
 
 .links {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.login-button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+#signup-link:hover {
+  text-decoration: underline;
 }
 
-.login-button:hover {
-  background-color: #0056b3;
+#login-link:hover {
+  text-decoration: underline;
 }
