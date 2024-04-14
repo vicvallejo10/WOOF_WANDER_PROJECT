@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+  <h3> Write a review </h3>
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
@@ -36,13 +37,13 @@
     <div class="rating-group">
       <% (1..5).each do |i| %>
         <%= radio_button_tag "review[rating]", i, i == @review.rating, class: "rating__input", id: "rating-#{i}" %>
-        <label aria-label="<%= i %> stars" class="rating__label" for="rating-<%= i %>"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <label aria-label="<%= i %> stars" class="rating__label" for="rating-<%= i %>"><i class="rating__icon rating__icon--star fa fa-star" style="color: #ffaf47;"></i></label>
       <% end %>
     </div>
   </div>
 
 
   <div class="actions">
-    <%= form.submit "Submit Review" %>
+    <%= form.submit "Submit Review", class:"button-orange" %>
   </div>
 <% end %>

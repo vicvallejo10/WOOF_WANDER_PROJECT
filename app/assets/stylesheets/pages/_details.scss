@@ -1,48 +1,56 @@
-.place-details {
-  .header {
-    margin-bottom: 20px;
+.place_details {
+  padding-left: 34px;
+  padding-right: 34px;
+}
 
-    .buttons {
-      display: flex;
-      justify-content: inline-block;
-      align-items: center;
+.hero {
+  padding-top: 20px;
+  // padding-bottom: 5px;
+  // font-weight: bold;
+  font-size: 24px;
+}
 
-      .btn {
-        padding: 10px 20px;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-      }
+.carousel {
+  padding-bottom: 30px;
+}
 
-      .take-me-there {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        margin-right: 10px;
-        padding: 6px 12px;
-      }
+.carousel-inner img{
+  height: 236px;
+  width: 362px;
+  object-fit: cover;
+  border-radius: 16px;
+}
 
-      .back {
-        background-color: #6c757d;
-        color: #fff;
-        border: none;
-        margin-right: 10px;
-        padding: 6px 12px;
-      }
-    }
+.buttons{
+  display: d-flex;
+
+  .take-me-there {
+    background-color: orange;
+    border: orange;
+    padding: 0.5rem 1rem; /* Increased padding for better visual appearance */
+    font-size: 1rem;
+    font-weight: 500; /* Slightly increased font weight */
+    line-height: 1.5;
+    // width: fit-content;
+    height: 38px;
+    // padding: 6px 12px;
   }
+}
 
+
+
+
+.place-details {
   .details {
     .tags {
       margin-bottom: 20px;
 
       .tag {
         display: inline-block;
-        margin-right: 10px;
         padding: 6px 12px;
-        background-color: #000911;
-        color: #fff;
-        border-radius: 4px;
+        background-color: $green10;
+        color: white;
+        border-radius: 16px;
       }
     }
 
