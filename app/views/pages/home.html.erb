@@ -51,33 +51,38 @@
     </div>
   <% else %>
     <!-- Display content for guests -->
-    <div class="welcome text-center">
-      <h1>Welcome to Woof Wander!</h1>
-    </div>
+    <div class="container blue">
+      <div class="welcome logo">
+        <%= image_tag "ww_v_green.png" %>
+      </div>
+        <div class="welcome dog">
+          <%= image_tag "Dog1dog.png" %>
+        </div>
+      </div>
 
-    <div class="features mt-4">
+    <%# <div class="features mt-4">
       <h2 class="text-center">Discover the World with Your Pet</h2>
       <ul class="text-center">
         <li>Find pet-friendly places</li>
         <li>Explore pet-friendly activities and attractions</li>
         <li>Read user reviews and recommendations</li>
       </ul>
-    </div>
+    </div> %>
 
     <div class="call-to-action mt-4 text-center">
-      <h2>Ready to Get Started?</h2>
-      <p>Log in or sign up now to start exploring pet-friendly destinations!</p>
+      <%# <h2>Ready?</h2>
+      <p>Log in or sign up now to start exploring pet-friendly destinations!</p> %>
       <div class="action-buttons">
-        <%= link_to "Log In", new_user_session_path, class: "btn btn-primary mr-2 btn-block" %>
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-block" %>
+        <%= link_to "Get Started", new_user_session_path, class: "btn btn-primary mr-2 btn-block" %>
+        <%# <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-block" %>
       </div>
     </div>
 
-    <div class="social-proof mt-4 text-center">
+    <%# <div class="social-proof mt-4 text-center">
       <h2>Join Thousands of Happy Users</h2>
       <p>Discover why pet owners love Woof Wander!</p>
       <!-- Add social proof elements such as user counts or ratings here -->
-    </div>
+    </div> %>
   <% end %>
 </div>
 
@@ -104,7 +109,7 @@
 <% end %>
 
 <!-- Footer -->
-<footer class="mt-4 text-center">
+<%# <footer class="mt-4 text-center">
   <p>Contact us at support@woofwander.com for assistance.</p>
   <!-- Add footer links or copyright information here -->
-</footer>
+</footer> %>

@@ -1,7 +1,7 @@
+
 <title>Edit Pet Details</title>
 
   <%= simple_form_for @pet, url: pet_path(@pet), method: :patch do |f| %>
-
     <%= f.input :pet_name, required: true %>
     <%= f.input :birthdate, as: :date %>
     <%= f.input :microchip_number %>
@@ -17,4 +17,3 @@
     <%= button_tag "Cancel", type: "button", class: "btn btn-sm btn-primary btn-block mt-2", onclick: "window.history.back();" %>
     <%= button_tag "Change Picture", type: "button", class: "btn btn-sm btn-primary btn-block mt-2" %>
   <% end %>
-
