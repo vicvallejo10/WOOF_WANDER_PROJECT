@@ -1,115 +1,21 @@
 
-<!-- Main Content -->
-<div>
-  <% if user_signed_in? %>
-    <!-- Display content for logged-in users -->
-    <h1 class="text-center">Hi, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
-    <!-- Add additional content for logged-in users -->
-    <!-- Check if the user has pets -->
-    <% if current_user.pets.any? %>
-      <!-- Display the user's pets -->
-      <div class="row">
-        <% current_user.pets.each do |pet| %>
-          <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card shadow">
-              <div class= pet-photo-home>
-                <% if pet.photo.attached? %>
-                    <%= cl_image_tag pet.photo.key, alt: pet.pet_name, class:"card-img-top" %>
-                <% else %>
-                    <%= image_tag "https://res.cloudinary.com/dag1qh58z/image/upload/v1712857676/5340777_a5bytl.jpg" %>
-                <% end %>
-              </div>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title"><%= pet.pet_name %></h5>
-                <p class="card-text">Breed: <%= pet.breed %></p>
-                <!-- change code below to show pet details -->
-                <a href="<%= pet_path(pet) %>" class="btn btn-primary btn-block">View Details</a>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <!-- If the user does not have pets, display an "Add New Pet" button and a "Get Started" text -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="card shadow">
-          <div class="card-body">
-            <h5 class="card-title">Get Started</h5>
-            <p class="card-text">You don't have any pets yet. Click below to add a new pet!</p>
-            <a href="/accountinformation" class="btn btn-primary">Add New Pet</a>
-          </div>
-        </div>
-      </div>
-    <% end %>
-
-    <!-- Button to go explore -->
-    <div class="row mt-12">
-      <div class="col-12">
-        <a href="/places" class="btn btn-lg btn-primary btn-block">Explore places near me</a>
-      </div>
+<!-- Display content for guests -->
+<div class="container">
+  <div class="container blue">
+    <div class="welcome logo">
+      <%= image_tag "ww_v_green.png" %>
     </div>
-  <% else %>
-    <!-- Display content for guests -->
-    <div class="container blue">
-      <div class="welcome logo">
-        <%= image_tag "ww_v_green.png" %>
-      </div>
-        <div class="welcome dog">
-          <%= image_tag "Dog1dog.png" %>
-        </div>
-      </div>
-
-    <%# <div class="features mt-4">
-      <h2 class="text-center">Discover the World with Your Pet</h2>
-      <ul class="text-center">
-        <li>Find pet-friendly places</li>
-        <li>Explore pet-friendly activities and attractions</li>
-        <li>Read user reviews and recommendations</li>
-      </ul>
-    </div> %>
-
-    <div class="call-to-action mt-4 text-center">
-      <%# <h2>Ready?</h2>
-      <p>Log in or sign up now to start exploring pet-friendly destinations!</p> %>
-      <div class="action-buttons">
-        <%= link_to "Get Started", new_user_session_path, class: "btn btn-primary mr-2 btn-block" %>
-        <%# <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-block" %>
+      <div class="welcome dog">
+        <%= image_tag "Dog1dog.png" %>
       </div>
     </div>
 
-    <%# <div class="social-proof mt-4 text-center">
-      <h2>Join Thousands of Happy Users</h2>
-      <p>Discover why pet owners love Woof Wander!</p>
-      <!-- Add social proof elements such as user counts or ratings here -->
-    </div> %>
-  <% end %>
-</div>
-
-<!--Recommended Places-->
-<% if user_signed_in? %>
-  <div class="row mt-4">
-    <div class="col-12">
-      <h2 class="card-title">Recommendation of the day:</h4>
-      <% random_recommendations(1).each do |recommendation| %>
-        <div class="col-md-4 mb-4">
-          <a href="<%= place_path(recommendation) %>" class="card-product">
-            <%# <%= image_tag "/assets/#{recommendation.ref}1.jpg", class:"card-img-top" %>
-            <%= image_tag "#{recommendation.ref}1.jpg", class:"card-img-top" %>
-            <%# <img src="https://images.unsplash.com/photo-1585938389612-a552a28d6914?q=80&w=2320&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Product Image"> %>
-            <div class="card-product-infos">
-              <h2><%= recommendation.place_name %></h2>
-              <p><%= recommendation.place_description %></p>
-            </div>
-          </a>
-        </div>
-      <% end %>
+  <div class="call-to-action mt-4 text-center">
+    <%# <h2>Ready?</h2>
+    <p>Log in or sign up now to start exploring pet-friendly destinations!</p> %>
+    <div class="action-buttons">
+      <%= link_to "Get Started", new_user_session_path, class: "btn btn-primary mr-2 btn-block" %>
+      <%# <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-block" %>
     </div>
   </div>
-<% end %>
-
-<!-- Footer -->
-<%# <footer class="mt-4 text-center">
-  <p>Contact us at support@woofwander.com for assistance.</p>
-  <!-- Add footer links or copyright information here -->
-</footer> %>
+</div>
