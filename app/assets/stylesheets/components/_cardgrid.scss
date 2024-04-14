@@ -1,0 +1,74 @@
+.cards {
+  margin-left: 30px;
+  display: flex; /* Use flexbox for horizontal layout */
+  overflow-x: auto; /* Allow horizontal scrolling */
+  scroll-snap-type: x mandatory; /* Enable snapping to each card */
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+  align-items: flex-end; /* Align items to the bottom */
+
+  .card-category {
+    flex: 0 0 auto; /* Ensure cards don't grow or shrink */
+    min-width: 300px; /* Minimum width for each card */
+    height: 200px; /* Fixed height for consistency */
+    border-radius: 16px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Ensures background image doesn't overflow container */
+    scroll-snap-align: start; /* Ensure each card snaps to the start */
+    margin-right: 20px; /* Add margin between cards */
+    text-decoration: none;
+
+    h5 {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 17.60px;
+      word-wrap: break-word;
+      margin: 10px 0; /* Add margin top and bottom */
+      margin-left: 30px;
+      margin-bottom: 0px;
+    }
+
+    p {
+      margin: 0; /* Remove default margin */
+      font-size: 14px;
+      line-height: 1.5; /* Improved line height for better readability */
+      color: #ffffff;
+      margin-left: 30px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.card-body {
+  padding-top: 130px;
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+/* Responsive breakpoints */
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr; /* On small devices, still one column */
+  }
+}
+
+@media (min-width: 768px) {
+  .cards {
+    grid-template-columns: 1fr 1fr; /* On medium devices, two columns */
+  }
+}
+
+@media (min-width: 992px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr; /* On large devices, three columns */
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards {
+    grid-template-columns: 1fr 1fr 1fr; /* On extra-large devices, still three columns */
+  }
+}

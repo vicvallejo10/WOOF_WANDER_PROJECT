@@ -1,10 +1,8 @@
 .logo-devise {
-  max-height: 50vh; /* Limit the maximum height */
-  max-width: 100%; /* Limit the maximum width */
-  display: flex;
-  flex-direction: column; /* Display content stacked vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  padding: 80px; /* Adjust the padding amount as needed */
-  margin: 30px;
+  margin: 30px auto;
+  padding: 100px; /* Adjust the padding as needed */
+  background-image: url('ww_v.png'); /* Replace 'path/to/your/image.jpg' with the actual URL or relative path to your image */
+  background-size: contain; /* Ensures the background image is contained within the container */
+  background-position: center;
+  background-repeat: no-repeat;
 }
