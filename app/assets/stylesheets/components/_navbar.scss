@@ -17,3 +17,16 @@
   width: 200px;
 }
 
+.navbar-home {
+  position: absolute;
+  width: 100%;
+  background: transparent;
+  box-shadow: none;
+  .navbar-wagon-link {
+    color: white;
+    font-weight: bold;
+  }
+  .navbar-brand {
+    opacity: 0%;
+  }
+}

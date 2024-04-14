@@ -1,69 +1,48 @@
 // Specific CSS for your home-page
-
-
-.container.home.green{
-  align-items: center;
-  background-color: #CEE9B6;
-}
-
-.container.home {
-  align-items: center;
-  background-color: #E0FCFD;
-}
-
-.welcome.logo {
-  display: flex; /* Make the welcome element a flex container */
-  align-items: center; /* Align items vertically within the container */
-  transform: scale(0.65); /* Reduce image size by 25% */
-}
-
-.welcome.dog {
-  padding: 60px 0; /* Adjust the padding amount as needed */
-}
-.card-2 {
-  overflow: hidden;
-  height: 120px;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+.banner {
+  height: 100vh;
   display: flex;
+  flex-direction: column; /* Display content stacked vertically */
+  justify-content: center; /* Center content vertically */
   align-items: center;
-}
+  background: linear-gradient(180deg, #E0FCFD 65%, #B8D8AD 35%);
+  background-size: cover;
+  background-position: center;
+  .logo {
+    padding: 60px 0; /* Adjust the padding amount as needed */
+  }
+  .welcome.dog {
+    padding: 60px 0; /* Adjust the padding amount as needed */
+  }
+  h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 45px;
+  }
+  p {
+    color: white;
+    opacity: .8;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 500;
+  }
+  .btn {
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    background: #2D8D79;
+    border: #2D8D79;
+    border-radius: 56px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    display: "inline-flex";
+  }
 
-.card-2 img {
-  height: 100%;
-  width: 120px;
-  object-fit: cover;
-}
-
-.card-2 h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
-
-.card-2 p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
-
-.card-2 .card-2-infos {
-  padding: 16px;
-}
-
-.checkout-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.checkout-button:hover {
-  background-color: #0056b3;
+  .btn:hover {
+    background-color: #62AC8B;; /* Bright background color on hover */
+    border-color: #62AC8B;; /* Bright border color on hover */
+    color: white; /* Set text color to white */
+  }
 }
