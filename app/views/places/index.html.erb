@@ -1,9 +1,9 @@
 
 <%# Search bar %>
-<div class="container">
+<div class="container explore">
   <%# Hero %>
   <div class="hero text-start fs-3">
-  Explore
+  <h1>Explore</h1>
   </div>
   <div class="row justify-content-center">
     <div class="col-sm-4 my-2 text-center">
@@ -13,16 +13,16 @@
               class: "form-control",
               placeholder: "Type a keyword"
           %>
-        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <%= submit_tag "Search", name: "", class: "button-orange" %>
       <% end %>
     </div>
-    <div class="col-sm-4 my-2 text-center">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filterModal">
+    <div class="col-sm-4 my-2">
+      <button type="button" class="button-orange filters-btn" data-toggle="modal" data-target="#filterModal">
         Filters
       </button>
     </div>
   </div>
-</div>
+
 
 
 
@@ -98,33 +98,34 @@
   </button> %>
 
     <%# Toggle button %>
-    <div class="button-toggle">
-            <div class="button r" id="button-1" data-action="click->toggle-map#fire">
-              <input type="checkbox" class="checkbox" />
-              <div class="knobs"></div>
-              <div class="layer"></div>
-            </div>
-    </div>
+    <div class="d-flex justify-content-end">
+      <input type="checkbox" id="toggle" class="toggleCheckbox" data-action="click->toggle-map#fire"/>
+      <label for="toggle" class='toggleContainer'>
+        <div>Map</div>
+        <div>List</div>
+      </label>
+      </div>
+
 
   <%# <!-- Map Section --> %>
-  <div class="container mt-4" data-toggle-map-target="map">
+  <div class="container" data-toggle-map-target="map">
     <div class="row justify-content-center">
-      <div class="col-sm-8">
-        <div class="map">
-          <div style="width: 100%; height: 500px;"
+
+        <%# <div class="map"> %>
+          <div class="mt-2" style="width: 100%; height: 500px;"
             data-controller="map"
             data-map-markers-value="<%= @markers.to_json %>"
             data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
           </div>
-        </div>
-      </div>
+        <%# </div> %>
+
     </div>
   </div>
 
   <%# <!-- Places Section --> %>
   <div class="container mt-4 d-none" data-toggle-map-target="list">
     <div class="row justify-content-center">
-      <div class="col-sm-8">
+      <div class="col-sm-8 p-0">
         <div id="places">
           <% if @places.any? %>
             <% @places.each do |place| %>
@@ -151,7 +152,7 @@
     </div>
   </div>
 </div>
-
+</div>
 
 <!-- JavaScript for Modal Actions -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

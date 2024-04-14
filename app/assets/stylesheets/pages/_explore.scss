@@ -1,5 +1,13 @@
+.explore {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .hero{
-  padding-top: 100px;
+  padding-top: 20px;
+  // padding-bottom: 5px;
+  // font-weight: $font-weight-bold;
+  // font-size: 24px;
 }
 
 .button-toggle {
@@ -7,32 +15,43 @@ align-items:end;
 padding-top: 20px;
 }
 
+#places{
+  padding: 0;
+}
+
 .card-product {
   position: relative;
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
   display: flex;
   align-items: center;
   margin-bottom: 20px; /* Add space between cards */
+  border-radius: 16px;
+  a{
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    font-weight: $font-weight-bold;
+  }
 }
 
 .card-product img {
   height: 100%;
-  width: 120px;
+  width: 115px;
   object-fit: cover;
 }
 
 .card-product h2 {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: $font-weight-bold;
   margin: 0;
 }
 
 .card-product p {
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 10px;
+  line-height: 1.2;
   opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;

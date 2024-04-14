@@ -1,21 +1,26 @@
 <!-- app/views/lists/index.html.erb -->
 <!-- Your Favorites Section -->
-<h1>Your Favorites</h1>
+<div class="container favorites ">
+  <div class="hero text-start fs-3">
+    <h1>Your Favorites</h1>
+  </div>
 
-<% if @lists.any? %>
-  <div class="row">
-    <% @lists.each do |list| %>
-      <div class="col-sm-4"> <!-- Adjust column size as needed -->
-        <div class="card-product">
-          <%= image_tag "#{list.place.ref}1.jpg" %> <!-- Assuming each place has an image ref -->
-          <div class="card-product-infos">
-            <h4><%= link_to list.place.place_name, place_path(list.place) %></h4> <!-- Link to place show page -->
-            <!-- Additional details if needed -->
+  <% if @lists.any? %>
+    <div class="row">
+      <% @lists.each do |list| %>
+        <div class="col-sm-4"> <!-- Adjust column size as needed -->
+          <div class="card-product">
+            <%= image_tag "#{list.place.ref}1.jpg" %> <!-- Assuming each place has an image ref -->
+            <div class="card-product-infos">
+              <h4><%= link_to list.place.place_name, place_path(list.place) %></h4> <!-- Link to place show page -->
+              <!-- Additional details if needed -->
+              <p><%= list.place.place_description %></p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
-<% else %>
-  <p>No favorites yet.</p>
-<% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <p>No favorites yet.</p>
+  <% end %>
+</div>
