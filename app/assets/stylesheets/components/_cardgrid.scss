@@ -5,6 +5,7 @@
   scroll-snap-type: x mandatory; /* Enable snapping to each card */
   -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
   align-items: flex-end; /* Align items to the bottom */
+  padding-bottom: 20px;
 
   .card-category {
     flex: 0 0 auto; /* Ensure cards don't grow or shrink */

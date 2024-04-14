@@ -36,22 +36,22 @@
 <% end %>
 
 <!--Recommended Places-->
-<div class="row mt-4">
-  <div class="col-12">
-    <h2 class="card-title">Recommendation of the day:</h2>
-    <% random_recommendations(1).each do |recommendation| %>
-      <div class="col-md-4 mb-4">
-        <a href="<%= place_path(recommendation) %>" class="card-product">
-          <%= image_tag "#{recommendation.ref}1.jpg", class:"card-img-top" %>
-          <div class="card-product-infos">
-            <h2><%= recommendation.place_name %></h2>
-            <p><%= recommendation.place_description %></p>
+<h2>Recommendation of today</h2>
+<div class="row mt-4 cards">
+  <% random_recommendations(1).each do |recommendation| %>
+      <a href="<%= place_path(recommendation) %>" class="card-link">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path("#{recommendation.ref}1.jpg") %>');">
+          <div class="card-body">
+            <h5><%= recommendation.place_name %></h5>
+            <p><%= recommendation.address %></p>
           </div>
-        </a>
-      </div>
-    <% end %>
-  </div>
+        </div>
+      </a>
+    </div>
+  <% end %>
 </div>
+
+
 
 <!-- Button to go explore -->
 <div class="row mt-4 justify-content-center">
