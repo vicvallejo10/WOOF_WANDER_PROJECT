@@ -1,21 +1,14 @@
+<%= content_for(:navbar_class, "navbar-home") %>
 
-<!-- Display content for guests -->
-<div class="container">
-  <div class="container blue">
-    <div class="welcome logo">
-      <%= image_tag "ww_v_green.png" %>
-    </div>
-      <div class="welcome dog">
-        <%= image_tag "Dog1dog.png" %>
-      </div>
-    </div>
-
-  <div class="call-to-action mt-4 text-center">
-    <%# <h2>Ready?</h2>
-    <p>Log in or sign up now to start exploring pet-friendly destinations!</p> %>
-    <div class="action-buttons">
-      <%= link_to "Get Started", new_user_session_path, class: "btn btn-primary mr-2 btn-block" %>
-      <%# <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-block" %>
-    </div>
+<div class="banner">
+  <div class="logo">
+    <%= image_tag "ww_v_green.png" %>
+  </div>
+  <div class="welcome dog">
+    <%= image_tag "Dog1dog.png" %>
+  </div>
+  <div class="banner-content text-center">
+    <p>Finding dog-friendly spots around town</p>
+    <%= link_to "Start now", new_user_session_path, class: "btn btn-lg btn-primary"  %>
   </div>
 </div>
