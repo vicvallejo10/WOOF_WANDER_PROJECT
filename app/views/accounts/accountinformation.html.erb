@@ -21,14 +21,14 @@
 <div class="button-container">
    <%# Button to edit the picture %>
    <div class="edit-form" data-controller="edit-avatar">
-    <button type="button" class="btn btn-primary" data-action="click->edit-avatar#displayForm">
+    <button type="button" class="btn btn-primary text-white font-weight-bold" data-action="click->edit-avatar#displayForm">
       Change Picture
       <i class="fa-solid fa-pen fa-xs ml-2"></i>
     </button>
 
 
    <%# Button to add a pet %>
-   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addpetModal" data-whatever="<%= current_user.first_name %>">Add Pet</button>
+   <button type="button" class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#addpetModal" data-whatever="<%= current_user.first_name %>">Add Pet</button>
 
     <%# Edit form to change picture %>
     <div class="d-none" data-edit-avatar-target="form">
