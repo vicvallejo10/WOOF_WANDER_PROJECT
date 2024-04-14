@@ -88,27 +88,35 @@
             </label>
           </div>
 
-          <div class="form-group">
+          <%# <div class="form-group">
             <label>Sterilized:</label><br>
             <label class="radio-inline">
-              <%= f.radio_button :sterilized, "Yes",required: false, class: "radio-button" %>
+              <%= f.radio_button :sterilized, "Yes",required: false, class: "radio-button"
               <span class="radio-label">Yes</span>
             </label>
             <label class="radio-inline">
-              <%= f.radio_button :sterilized, "No",required: false, class: "radio-button" %>
+              <%= f.radio_button :sterilized, "No",required: false, class: "radio-button"
               <span class="radio-label">No</span>
             </label>
-          </div>
+          </div> %>
 
           <div class="form-group">
             <label for="color">Color:</label>
             <%= f.text_field :color, class: "form-control", id: "color" %>
           </div>
 
-          <div class="form-group">
+
+          <%# Update pet picture %>
+          <%# <div class="form-group"> %>
+            <%# <label for="photo">Photo:</label> %>
+            <%= f.input :photo, as: :file, input_html: { multiple: false } %>
+          <%# </div> %>
+
+<!--           <%# <div class="form-group">
             <label for="Vaccine Card">Vaccine Card:</label>
             <%= f.text_field :vaccine_card, class: "form-control", id: "vaccine card" %>
-          </div>
+          </div> -->
+
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
