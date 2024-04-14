@@ -1,9 +1,11 @@
 .favorites {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 34px;
+  padding-right: 34px;
 }
 
-.hero{
+.hero h1 {
   padding-top: 20px;
+  font-size: 24px;
+  font-weight: $font-weight-bold;
   // padding-bottom: 5px;
 }

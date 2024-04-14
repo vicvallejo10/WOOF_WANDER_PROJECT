@@ -60,7 +60,7 @@
   display: inline-flex; /* Use inline-flex for better alignment */
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: fit-content;
   padding: 0.5rem 1rem; /* Increased padding for better visual appearance */
   font-size: 1rem;
   font-weight: 500; /* Slightly increased font weight */
@@ -71,6 +71,7 @@
   border-radius: 0.5rem; /* Increased border radius for a rounded button */
   cursor: pointer; /* Add pointer cursor to indicate interactivity */
   transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Add transition effects */
+  text-decoration: none;
 }
 
 /* Hover effect */
@@ -84,5 +85,3 @@
   outline: none; /* Remove default focus outline */
   box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.5); /* Add focus shadow */
 }
-
-
