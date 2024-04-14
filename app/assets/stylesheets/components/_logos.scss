@@ -1,0 +1,9 @@
+.logo-devise {
+  max-height: 50vh; /* Limit the maximum height */
+  max-width: 100%; /* Limit the maximum width */
+  display: flex;
+  flex-direction: column; /* Display content stacked vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  padding: 80px; /* Adjust the padding amount as needed */
+}
