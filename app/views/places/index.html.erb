@@ -41,8 +41,8 @@
           <div class="container-fluid">
             <div class="row">
               <!-- First Column (Place Types) -->
-              <div class="col-md-6">
-                <h6>Place Types:</h6>
+              <div class="col-md-6" id="filter-modal">
+                <h6 class ="pt-1"><strong>Place Types:</strong></h6>
                 <% Place::PLACE_TYPES.each do |place_type| %>
                   <div class="form-check">
                     <%= radio_button_tag 'place_type', place_type, params[:place_type]==place_type, class: 'form-check-input', id: "placeType_#{place_type.downcase}" %>
@@ -54,7 +54,7 @@
               <div class="col-md-6">
                 <!-- Size Filter -->
                 <div>
-                  <h6>Size:</h6>
+                  <h6 class ="pt-1"><strong>Size:</strong></h6>
                   <div class="form-check">
                     <%= radio_button_tag(:size, 'Small', params[:size]=='Small', class: 'form-check-input', id: 'smallSize') %>
                     <%= label_tag('smallSize', 'Small', class: 'form-check-label') %>
@@ -70,7 +70,7 @@
                 </div>
                 <!-- Special Characteristics Filter -->
                 <div class="mt-4">
-                  <h6>Special Characteristics:</h6>
+                  <h6 class ="pt-1"><strong>Special Characteristics:</strong></h6>
                   <% Place::SPECIAL_CHARACTERISTICS.each do |characteristic| %>
                     <div class="form-check">
                       <%= radio_button_tag 'special_characteristic', characteristic, params[:special_characteristic]==characteristic, class: 'form-check-input', id: "specialCharacteristic_#{characteristic.downcase}" %>
@@ -83,8 +83,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" id="applyFilterButton">Apply Filter</button>
-          <button type="button" class="btn btn-danger" id="resetFilterButton">Reset</button>
+          <button type="submit" class="btn btn-primary orange text-white" id="applyFilterButton">Apply Filter</button>
+          <button type="button" class="btn btn-secondary" id="resetFilterButton">Reset</button>
         </div>
       <% end %>
     </div>
