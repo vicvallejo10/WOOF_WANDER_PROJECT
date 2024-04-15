@@ -1,61 +1,62 @@
-<!-- Display content for logged-in users -->
-<div>
-  <p class="text-left" style="margin-left: 30px; margin-bottom: 0px;">Welcome back,</p>
-  <h4 class="text-left" style="margin-left: 30px; margin-top: 0; margin-bottom: 20px;"><%= current_user.first_name %> <%= current_user.last_name %>!</h4>
-</div>
-
-<!-- Check if the user has pets -->
-<h2 style="margin-left: 30px;">My Pets</h2>
-<% if current_user.pets.any? %>
-  <!-- Display the user's pets -->
-  <div class="cards">
-    <% current_user.pets.each do |pet| %>
-      <a href="<%= pet_path(pet) %>" class="card-link">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= pet.photo.attached? ? cl_image_path(pet.photo.key) : "https://res.cloudinary.com/dag1qh58z/image/upload/v1712857676/5340777_a5bytl.jpg" %>');">
-          <div class="card-body">
-            <h5><%= pet.pet_name %></h5>
-            <p>Breed: <%= pet.breed %></p>
-          </div>
-        </div>
-      </a>
-    <% end %>
+<div class="container-margin">
+  <!-- Display content for logged-in users -->
+  <div>
+    <p class="text-left" style="margin-bottom: 0px;">Welcome back,</p>
+    <h4 class="text-left" style="margin-top: 0; margin-bottom: 20px;"><%= current_user.first_name %> <%= current_user.last_name %>!</h4>
   </div>
-<% else %>
-  <!-- If the user does not have pets, display an "Add New Pet" button and a "Get Started" text -->
-  <div class="row mt-4">
-    <div class="col-12 col-md-6 col-lg-4 mb-4">
-      <div class="card shadow">
-        <div class="card-body">
-          <h5 class="card-title">Get Started</h5>
-          <p class="card-text">You don't have any pets yet. Click below to add a new pet!</p>
-          <a href="/accountinformation" class="btn btn-primary">Add New Pet</a>
+
+  <!-- Check if the user has pets -->
+  <h2>My Pets</h2>
+  <% if current_user.pets.any? %>
+    <!-- Display the user's pets -->
+    <div class="cards">
+      <% current_user.pets.each do |pet| %>
+        <a href="<%= pet_path(pet) %>" class="card-link">
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= pet.photo.attached? ? cl_image_path(pet.photo.key) : "https://res.cloudinary.com/dag1qh58z/image/upload/v1713173656/19_k2zvdo.svg" %>');">
+            <div class="card-body">
+              <h5><%= pet.pet_name %></h5>
+              <p>Breed: <%= pet.breed %></p>
+            </div>
+          </div>
+        </a>
+      <% end %>
+    </div>
+  <% else %>
+    <!-- If the user does not have pets, display an "Add New Pet" button and a "Get Started" text -->
+    <div class="row mt-4">
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h5 class="card-title">Get Started</h5>
+            <p class="card-text">You don't have any pets yet. Click below to add a new pet!</p>
+            <a href="/accountinformation" class="btn btn-primary">Add New Pet</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
-
-<!--Recommended Places-->
-<h2 style="margin-left: 30px;">Recommendations of the day</h2>
-<div class="row mt-4 cards">
-  <% random_recommendations(1).each do |recommendation| %>
-      <a href="<%= place_path(recommendation) %>" class="card-link">
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path("#{recommendation.ref}1.jpg") %>');">
-          <div class="card-body">
-            <h5><%= recommendation.place_name %></h5>
-            <p><%= recommendation.address %></p>
-          </div>
-        </div>
-      </a>
-    </div>
   <% end %>
-</div>
+
+  <!--Recommended Places-->
+  <h2 class="pt-3">Recommendations of the day</h2>
+  <div class="row mt-1 cards">
+    <% random_recommendations(1).each do |recommendation| %>
+        <a href="<%= place_path(recommendation) %>" class="card-link">
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= image_path("#{recommendation.ref}1.jpg") %>');">
+            <div class="card-body">
+              <h5><%= recommendation.place_name %></h5>
+              <p><%= recommendation.address %></p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end %>
 
 
 
-<!-- Button to go explore -->
-<div class="row mt-4 justify-content-center">
-  <div class="col-10">
-    <a href="/places" class="login-button">Explore places near me</a>
+  <!-- Button to go explore -->
+  <div class="row mt-4 justify-content-center">
+    <div class="col-sm-4 my-2">
+      <a href="/places" class="login-button">Explore places near me</a>
+    </div>
   </div>
 </div>

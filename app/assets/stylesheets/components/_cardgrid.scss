@@ -1,5 +1,4 @@
 .cards {
-  margin-left: 30px;
   display: flex; /* Use flexbox for horizontal layout */
   overflow-x: auto; /* Allow horizontal scrolling */
   scroll-snap-type: x mandatory; /* Enable snapping to each card */
@@ -73,4 +72,3 @@
     grid-template-columns: 1fr 1fr 1fr; /* On extra-large devices, still three columns */
   }
 }
-
