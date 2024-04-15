@@ -59,7 +59,7 @@ export default class extends Controller {
               'line-cap': 'round'
             },
             paint: {
-              'line-color': '#3887be',
+              'line-color': '#FF6D00',
               'line-width': 5,
               'line-opacity': 0.75
             }
@@ -76,7 +76,8 @@ export default class extends Controller {
         }
         instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
           data.duration / 60
-        )} min 🐕 </strong></p><ol>${tripInstructions}</ol>`;
+        )} min 🐕 </strong></p>
+        <ol>${tripInstructions}</ol>`;
       }
 
       this.map.on('load', () => {
@@ -100,13 +101,21 @@ export default class extends Controller {
                     type: 'Point',
                     coordinates: start
                   }
+                },
+                {
+                  type: 'Feature',
+                  properties: {},
+                  geometry: {
+                    type: 'Point',
+                    coordinates: this.markersValue
+                  }
                 }
               ]
             }
           },
           paint: {
             'circle-radius': 10,
-            'circle-color': '#3887be'
+            'circle-color': '#FF6D00'
           }
         });
         getRoute(this.markersValue, this.map)
