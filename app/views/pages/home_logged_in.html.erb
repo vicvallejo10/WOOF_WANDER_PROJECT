@@ -5,7 +5,7 @@
 </div>
 
 <!-- Check if the user has pets -->
-<h2 style="margin-left: 30px;">My pets</h2>
+<h2 style="margin-left: 30px;">My Pets</h2>
 <% if current_user.pets.any? %>
   <!-- Display the user's pets -->
   <div class="cards">
@@ -36,7 +36,7 @@
 <% end %>
 
 <!--Recommended Places-->
-<h2 style="margin-left: 30px;">Recommendation of today</h2>
+<h2 style="margin-left: 30px;">Recommendations of the day</h2>
 <div class="row mt-4 cards">
   <% random_recommendations(1).each do |recommendation| %>
       <a href="<%= place_path(recommendation) %>" class="card-link">

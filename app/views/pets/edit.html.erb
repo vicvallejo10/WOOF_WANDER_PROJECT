@@ -1,19 +1,26 @@
 
 <title>Edit Pet Details</title>
+<div class="login-container">
+  <div class="simple-form">
+    <%= simple_form_for @pet, url: pet_path(@pet), method: :patch do |f| %>
+    <div class="form-inputs">
+      <%= f.input :pet_name, required: true %>
+      <%= f.input :birthdate, as: :date %>
+      <%= f.input :microchip_number, required: false %>
+      <%= f.input :breed %>
+      <%= f.input :size, collection: ['Small', 'Medium', 'Big'], required: true %>
+      <%= f.input :color %>
+      <%# <%= f.input :sterilized, as: :radio_buttons, collection: [['Yes', true], ['No', false]] %>
+      <%# <%= f.input :vaccine_card %>
+      <%= f.input :photo, as: :file, input_html: { multiple: false } %>
+    </div>
 
-  <%= simple_form_for @pet, url: pet_path(@pet), method: :patch do |f| %>
-    <%= f.input :pet_name, required: true %>
-    <%= f.input :birthdate, as: :date %>
-    <%= f.input :microchip_number %>
-    <%= f.input :breed %>
-    <%= f.input :size, collection: ['Small', 'Medium', 'Large'], required: true %>
-    <%= f.input :color %>
-    <%# <%= f.input :sterilized, as: :radio_buttons, collection: [['Yes', true], ['No', false]] %>
-    <%# <%= f.input :vaccine_card %>
-    <%= f.input :photo, as: :file, input_html: { multiple: false } %>
-
-    <!-- Submit and Cancel Buttons -->
-    <%= f.button :submit, "Save", class: "btn btn-sm btn-primary btn-block mt-2", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :submit %>
-    <%= button_tag "Cancel", type: "button", class: "btn btn-sm btn-primary btn-block mt-2", onclick: "window.history.back();" %>
-    <%= button_tag "Change Picture", type: "button", class: "btn btn-sm btn-primary btn-block mt-2" %>
-  <% end %>
+      <!-- Submit and Cancel Buttons -->
+      <div class="form-actions">
+        <%= f.button :submit, "Save", class: "btn btn-primary orange text-white", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :submit %>
+        <%= button_tag "Cancel", type: "button", class: "btn btn-primary orange text-white", onclick: "window.history.back();" %>
+        <%= button_tag "Change Picture", type: "button", class: "btn btn-primary orange text-white" %>
+      </div>
+    <% end %>
+  </div>
+</div>

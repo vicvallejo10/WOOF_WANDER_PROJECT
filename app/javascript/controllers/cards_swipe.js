@@ -19,3 +19,5 @@ cardsContainer.addEventListener('touchmove', (e) => {
 cardsContainer.addEventListener('touchend', () => {
   isScrolling = false;
 });
+
+
