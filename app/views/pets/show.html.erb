@@ -20,8 +20,10 @@
       <p><strong>Sterilized:</strong> <%= @pet.sterilized ? 'Yes' : 'No' %></p>
       <p><strong>Vaccine Card:</strong> <%= @pet.vaccine_card %></p>
     </div>
-    <%= link_to "Edit Pet", edit_pet_path(@pet), class: "btn btn-primary orange text-white" %>
-    <%= link_to "Back", places_path, class: "btn btn-secondary back", onclick: "window.history.back();" %>
+    <div class="buttons-edit d-flex pt-3">
+      <%= link_to "Edit Pet", edit_pet_path(@pet), class: "btn btn-primary orange text-white mx-2" %>
+      <%= link_to "Back", places_path, class: "btn btn-secondary back", onclick: "window.history.back();" %>
+    </div>
   </div>
 </div>
 
