@@ -18,8 +18,7 @@
       <!-- Submit and Cancel Buttons -->
       <div class="form-actions">
         <%= f.button :submit, "Save", class: "btn btn-primary orange text-white", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :submit %>
-        <%= button_tag "Cancel", type: "button", class: "btn btn-primary orange text-white", onclick: "window.history.back();" %>
-        <%= button_tag "Change Picture", type: "button", class: "btn btn-primary orange text-white" %>
+        <%= button_tag "Cancel", type: "button", class: "btn btn-secondary", onclick: "window.history.back();" %>
       </div>
     <% end %>
   </div>

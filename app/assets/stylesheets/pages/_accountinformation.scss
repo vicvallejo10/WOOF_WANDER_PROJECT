@@ -7,9 +7,12 @@
   font-weight: bold;
 }
 
-.modal-body label {
-  font-weight: bold;
+#filter-modal {
+  .modal-body label {
+    font-weight: 500;
+  }
 }
+
 
 .user-details,
 .pet-list {

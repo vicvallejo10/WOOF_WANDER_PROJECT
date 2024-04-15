@@ -1,6 +1,18 @@
 .explore {
   padding-left: 34px;
   padding-right: 34px;
+  .blog-content{
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      padding-top: 10px;
+    }
+    h3 {
+      font-size: 16px;
+      padding-top: 10px;
+    }
+
+  }
 }
 
 .hero{
@@ -17,6 +29,15 @@ padding-top: 20px;
 
 #places{
   padding: 0;
+}
+
+.blog-photo{
+  img {
+    object-fit: cover;
+    height: 180px;
+    width: 100%;
+    border-radius: 16px;
+  }
 }
 
 .card-product {
@@ -79,4 +100,8 @@ padding-top: 20px;
 /* Heart icon color when active (liked/saved) */
 .heart-icon.active {
   color: red;
+}
+
+.form-check-label {
+  font-weight: 500;
 }
