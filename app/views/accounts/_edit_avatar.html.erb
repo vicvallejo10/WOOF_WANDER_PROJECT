@@ -1,4 +1,6 @@
-  <%= simple_form_for((user), url: update_avatar_path, html: { method: :put }) do |f|%>
-    <%= f.input :avatar, as: :file, label: false, input_html: { multiple: false } %>
-    <%= f.submit %>
-  <% end %>
+  <div class="my-2 mx-2">
+    <%= simple_form_for((user), url: update_avatar_path, html: { method: :put }) do |f|%>
+      <%= f.input :avatar, as: :file, label: false, input_html: { multiple: false } %>
+      <%= f.submit %>
+    <% end %>
+  </div>

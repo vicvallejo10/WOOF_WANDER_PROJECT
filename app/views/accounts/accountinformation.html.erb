@@ -120,7 +120,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <%= f.button :submit, "Add Pet", class: "btn btn-primary" %>
+            <%= f.button :submit, "Add Pet", class: "btn btn-primary", style: "color: white" %>
           </div>
         <% end %>
       </div>
@@ -129,39 +129,41 @@
 </div>
 
 <!-- user info -->
-<div class="user-details">
-  <h3>My Profile</h3>
-  <p>First Name: <%= current_user.first_name %></p>
-  <p>Last Name: <%= current_user.last_name %></p>
-  <p>Email: <%= current_user.email %></p>
-</div>
+<div class="details-account">
+  <div class="user-details">
+    <h3>My Profile</h3>
+    <p>First Name: <%= current_user.first_name %></p>
+    <p>Last Name: <%= current_user.last_name %></p>
+    <p>Email: <%= current_user.email %></p>
+  </div>
 
-<!-- pet list -->
-<div class="pet-list">
-  <h3>My Pets</h3>
-  <% if @pets.any? %>
-    <% @pets.each do |pet| %>
-      <div class="pet-item">
-        <div class="pet-details">
-            <div class ="pet-photo">
-              <% if pet.photo.attached? %>
-                  <%= cl_image_tag pet.photo.key, alt: pet.pet_name %>
-              <% else %>
-                  <%= image_tag "https://res.cloudinary.com/dag1qh58z/image/upload/v1713173656/19_k2zvdo.svg" %>
-              <% end %>
-            </div>
-          <%= pet.pet_name %>
+  <!-- pet list -->
+  <div class="pet-list">
+    <h3>My Pets</h3>
+    <% if @pets.any? %>
+      <% @pets.each do |pet| %>
+        <div class="pet-item">
+          <div class="pet-details">
+              <div class ="pet-photo">
+                <% if pet.photo.attached? %>
+                    <%= cl_image_tag pet.photo.key, alt: pet.pet_name %>
+                <% else %>
+                    <%= image_tag "https://res.cloudinary.com/dag1qh58z/image/upload/v1713173656/19_k2zvdo.svg" %>
+                <% end %>
+              </div>
+            <%= pet.pet_name %>
+          </div>
+          <div class="pet-icons">
+          <%= link_to image_tag("https://img.icons8.com/material-outlined/24/visible--v1.png", alt: "visible--v1"), pet_path(pet) %>
+            <%= link_to image_tag("https://img.icons8.com/material-outlined/24/trash--v1.png", alt: "trash--v1"), pet_path(pet), data: { turbo_method: :delete, confirm: "Are you sure you want to delete #{pet.pet_name}?" }, class: "delete-pet" %>
+          </div>
         </div>
-        <div class="pet-icons">
-        <%= link_to image_tag("https://img.icons8.com/material-outlined/24/visible--v1.png", alt: "visible--v1"), pet_path(pet) %>
-          <%= link_to image_tag("https://img.icons8.com/material-outlined/24/trash--v1.png", alt: "trash--v1"), pet_path(pet), data: { turbo_method: :delete, confirm: "Are you sure you want to delete #{pet.pet_name}?" }, class: "delete-pet" %>
-        </div>
-      </div>
+      <% end %>
+    <% else %>
+      <p>No pet information yet</p>
     <% end %>
-  <% else %>
-    <p>No pet information yet</p>
-  <% end %>
-</div>
+  </div>
+  </div>
 
 
 <!-- bootstrap -->
