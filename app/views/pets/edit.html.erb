@@ -8,8 +8,8 @@
     <%= f.input :breed %>
     <%= f.input :size, collection: ['Small', 'Medium', 'Large'], required: true %>
     <%= f.input :color %>
-    <%= f.input :sterilized, as: :radio_buttons, collection: [['Yes', true], ['No', false]] %>
-    <%= f.input :vaccine_card %>
+    <%# <%= f.input :sterilized, as: :radio_buttons, collection: [['Yes', true], ['No', false]] %>
+    <%# <%= f.input :vaccine_card %>
     <%= f.input :photo, as: :file, input_html: { multiple: false } %>
 
     <!-- Submit and Cancel Buttons -->
