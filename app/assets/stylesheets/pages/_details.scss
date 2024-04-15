@@ -1,6 +1,12 @@
 .place_details {
   padding-left: 34px;
   padding-right: 34px;
+
+  h3 {
+    font-size: 20px;
+    font-weight: $font-weight-bold;
+    margin-bottom: 8px;
+  }
 }
 
 .hero {
@@ -25,8 +31,8 @@
   display: d-flex;
 
   .take-me-there {
-    background-color: orange;
-    border: orange;
+    background-color: $orange02;
+    border: $orange02;
     padding: 0.5rem 1rem; /* Increased padding for better visual appearance */
     font-size: 1rem;
     font-weight: 500; /* Slightly increased font weight */
